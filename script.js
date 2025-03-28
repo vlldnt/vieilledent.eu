@@ -5,14 +5,12 @@ document.addEventListener("DOMContentLoaded", () => {
         accordion.addEventListener("click", () => {
             const panel = accordion.nextElementSibling;
 
-            // Toggle the "active" class
-            accordion.classList.toggle("active");
-
-            // Open or close the panel
-            if (panel.style.display === "block") {
-                panel.style.display = "none";
+            panel.classList.toggle("open");
+            
+            if (panel.classList.contains("open")) {
+                panel.style.maxHeight = panel.scrollHeight + "px";
             } else {
-                panel.style.display = "block";
+                panel.style.maxHeight = null;
             }
         });
     });
