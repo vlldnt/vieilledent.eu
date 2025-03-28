@@ -2,6 +2,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const accordions = document.querySelectorAll(".accordion");
 
     accordions.forEach((accordion) => {
+        const parent = accordion.closest(".left-content");
+
+        accordion.addEventListener("mouseover", () => {
+            parent.style.backgroundColor = "#1092f5";
+        });
+
+        accordion.addEventListener("mouseout", () => {
+            parent.style.backgroundColor = "#5CB6F9";
+        });
+
         accordion.addEventListener("click", () => {
             const panel = accordion.nextElementSibling;
 
