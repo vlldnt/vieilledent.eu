@@ -55,15 +55,15 @@ header a {
     flex-direction: column;
     align-items: center;
     width: 30%;
-    padding: 5px 15px 5px 15px;
+    padding: 5px;
 }
 
 .left-content {
     background-color: #5CB6F9;
-    margin: 25px;
+    margin: 15px;
     border-radius: 10px;
     width: 90%;
-    padding: 15px;
+    padding: 10px;
 }
 
 .text-info {
@@ -116,7 +116,7 @@ header a {
 }
 
 .photo img {
-    max-width: 80%;
+    max-width: 100%;
     height: auto;
     border-radius: 5%;
     display: block;
@@ -156,11 +156,27 @@ a {
     border-radius: 5px;
     transition: background-color 0.3s;
 }
+.accordion-right {
+    cursor: pointer;
+    background-color: #12229D;
+    color: white;
+    padding: 15px;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
 
 .accordion:hover {
+    background-color: #1092f5;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); 
+    transition: all 1s ease;
+}
+.accordion-right:hover {
     background-color: #5CB6F9;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); 
-    transform: scale(1.2);
     transition: all 1s ease;
 }
 
@@ -168,10 +184,19 @@ a {
     max-height: 0;
     overflow: hidden;
     background-color: #5CB6F9;
-    padding: 0 10px;
+    padding: 0px;
     border-radius: 5px;
     transition: max-height 0.5s ease-out;/
 }
+
+.panel-right {
+    max-height: 0;
+    overflow: hidden;
+    background-color: #F2F2F2;
+    border-radius: 5px;
+    transition: max-height 0.5s ease-out;/
+}
+
 
 .panel.open {
     max-height: 500px;
