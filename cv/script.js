@@ -2,14 +2,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const accordions = document.querySelectorAll(".accordion");
 
     accordions.forEach((accordion) => {
-        const parent = accordion.closest(".left-content");
+        const parent = accordion.closest(".left-content h3");
 
         accordion.addEventListener("mouseover", () => {
-            parent.style.backgroundColor = "#1092f5";
+            parent.style.color = "#1092f5";
         });
 
         accordion.addEventListener("mouseout", () => {
-            parent.style.backgroundColor = "#5CB6F9";
+            parent.style.color = "#1D3E56";
         });
 
         accordion.addEventListener("click", () => {

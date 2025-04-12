@@ -1,32 +1,112 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adrien Vieilledent - Website</title>
+    <title>Adrien Vieilledent - Developpeur</title>
+    <link rel="shortcut icon" href="images/logos/dent.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="images/dent.png" type="image/x-icon">
 </head>
 <body>
-
     <header>
-        <h1>Bienvenue !</h1>
-        <p>Je suis <span class="name">Adrien Vieilledent</span>, développeur & créatif.</p>
-        <a href="/cv/index.html" class="btn">Voir mon Portfolio</a>
+        <div class="image-container">
+            <img class="header-img" src="images/profile_picture.png" alt="">
+            <h1 class="header-title">ADRIEN VIEILLEDENT</h1>
+        </div>
+        <ul class="header-menu">
+            <li><a class="menu-link" href="#home">Home</a></li>
+            <li><a class="menu-link" href="#about">About</a></li>
+            <li><a class="menu-link" href="#projects">Projects</a></li>
+            <li><a class="menu-link" href="#contact">Contact</a></li>
+        </ul>
     </header>
 
-    <section class="about">
-        <h2>À propos de moi</h2>
-        <p>Passionné par le développement web et le design, je crée des expériences interactives uniques.</p>
+    <section id="home" class="home-section">
+        <div class="home-hero">
+            <h1 class="hero-title">Hey, i'm Adrien Vieilledent</h1>
+            <p class="hero-text">I'm a passionate web developer dedicated to crafting beautiful and functional digital experiences. I specialize in creating dynamic websites and applications that are user-friendly, responsive, and tailored to meet the needs of modern businesses.</p>
+        </div>
+        <div class="socials">
+            <div class="social"><a href="https://vieilledent.eu"><img src="images/logos/dent.png" alt="vieilledent.eu"></a></div>
+            <div class="social"><a href="https://www.linkedin.com/in/adrien-vieilledent-791b39346/"><img src="images/logos/linkedin.svg" alt="LinkedIn"></a></div>
+            <div class="social"><a href="https://github.com/vlldnt"><img src="images/logos/github.svg" alt="GitHub"></a></div>
+            <div class="social"><a href="https://www.youtube.com/@OlosNah"><img src="images/logos/youtube.svg" alt=""></a></div>
+        </div>
+        <div class="project-button">
+            <a href="#projects"><button class="buttons">Projects</button></a>
+        </div>
+        <div class="scroll"></div>
+    </section>
+
+
+    <section id="about" class="about-section">
+        <div class="section-container">
+
+            <h2 class="section-title">
+                <span class="span-title">About Me</span>
+                <span class="span-text">Here you will find more information about me, what I do, and my current skills mostly in terms of programming and technology</span>
+            </h2>
+
+            <div class="about-card">
+                <div class="main-card">
+                    <h3 class="about-title">Get to know me!</h3>
+                    <p class="text-para">I'm a Frontend Focused Web Developer building and managing the Front-end of Websites and Web Applications that leads to the success of the overall product. Check out some of my work in the Projects section.</p>
+                    <p class="text-para">I also like sharing content related to the stuff that I have learned over the years in Web Development so it can help other people of the Dev Community. Feel free to Connect or Follow me on my Linkedin and Instagram where I post useful content related to Web Development and Programming</p>
+                    <p class="text-para">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores, iste? Nihil voluptas distinctio repudiandae minima commodi rerum voluptatum libero omnis aliquam quaerat voluptates, ipsam reicienrum fugiat reprehenderit mollitia fugit ipsa delectus. Corrupti, quos?</p>
+                    <button class="buttons"></button>
+                </div>
+                <div class="skills-card">
+                    <h3 class="about-title">My Skills</h3>
+                    <div class="skills">
+                        <div class="skill">HTML</div>
+                        <div class="skill">CSS</div>
+                        <div class="skill">JavaScript</div>
+                        <div class="skill">Python</div>
+                        <div class="skill">SQL</div>
+                        <div class="skill">GIT</div>
+                        <div class="skill">GitHub</div>
+                        <div class="skill">VSCode</div>
+                        <div class="skill">Terminal</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="projects" class="projects-section">
+            <div class="section-container">
+                <h2 class="section-title">
+                    <span class="span-title">Projects</span>
+                    <span class="span-text">Here you will find some of the personal and schools projects that I created with each project containing its own case study</span>
+                </h2>
+
+                <div class="projects-content">
+                    <div class="project">
+                        <div class="project-image">
+                            <img src="images/projects-images/dopefolio.jpeg" alt="">
+                        </div>
+                        <div class="project-details">
+                            <h3 class="project-title">Holberton School - HbnB</h3>
+                            <p class="project-text">
+                               Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum earum et iure deleniti fugiat ipsa dolorum perspiciatis, ex architecto repudiandae!
+                            </p>
+                            <a href="" class="buttons"><button>HbnB</button></a>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+    </section>
+
+
+    <section id="contact" class="contact-section">
+        
     </section>
 
     <footer>
-        <p>Retrouvez-moi sur :</p>
-        <div class="socials">
-            <a href="https://www.linkedin.com/in/adrien-vieilledent-791b39346/">💼 LinkedIn</a>
-            <a href="https://github.com/vlldnt">🐦 gitHub</a>
-        </div>
-    </footer>
 
+    </footer>
 </body>
 </html>
