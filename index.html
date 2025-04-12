@@ -53,7 +53,7 @@
                     <p class="text-para">I'm a Frontend Focused Web Developer building and managing the Front-end of Websites and Web Applications that leads to the success of the overall product. Check out some of my work in the Projects section.</p>
                     <p class="text-para">I also like sharing content related to the stuff that I have learned over the years in Web Development so it can help other people of the Dev Community. Feel free to Connect or Follow me on my Linkedin and Instagram where I post useful content related to Web Development and Programming</p>
                     <p class="text-para">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores, iste? Nihil voluptas distinctio repudiandae minima commodi rerum voluptatum libero omnis aliquam quaerat voluptates, ipsam reicienrum fugiat reprehenderit mollitia fugit ipsa delectus. Corrupti, quos?</p>
-                    <button class="buttons"></button>
+                    <button class="buttons">Contact</button>
                 </div>
                 <div class="skills-card">
                     <h3 class="about-title">My Skills</h3>
@@ -80,32 +80,108 @@
                     <span class="span-title">Projects</span>
                     <span class="span-text">Here you will find some of the personal and schools projects that I created with each project containing its own case study</span>
                 </h2>
-
                 <div class="projects-content">
+
                     <div class="project">
                         <div class="project-image">
                             <img src="images/projects-images/dopefolio.jpeg" alt="">
                         </div>
+
+                        <div class="project-details">
+                            <h3 class="project-title">Holberton School - Simple Shell</h3>
+                            <p class="project-text">
+                                Recreate a basic shell in C that can interpret and execute user commands in a UNIX-like environment.
+                            </p>
+                            <a href="" class="buttons"><button>HbnB</button></a>
+                        </div>
+                    </div> 
+
+                    <div class="project">
                         <div class="project-details">
                             <h3 class="project-title">Holberton School - HbnB</h3>
                             <p class="project-text">
-                                The Holberton School HBNB Project is a web development project where students create a simple Airbnb clone using various technologies, such as Python, Flask, and SQLAlchemy. It is part of the Full Stack Software Engineering curriculum at Holberton School.</p>
+                                The Holberton School HBNB Project is a web development project where students create a simple Airbnb clone using various technologies, such as Python, Flask, and SQLAlchemy. It is part of the Full Stack Software Engineering curriculum at Holberton School.
+                            </p>
                             <a href="" class="buttons"><button>HbnB</button></a>
                         </div>
+                    </div>
+                    
+                    <div class="project">
+                        <div class="project-details">
+                            <h3 class="project-title">Holberton School - HbnB</h3>
+                            <p class="project-text">
+                                The Holberton School HBNB Project is a web development project where students create a simple Airbnb clone using various technologies, such as Python, Flask, and SQLAlchemy. It is part of the Full Stack Software Engineering curriculum at Holberton School.
+                            </p>
+                            <a href="" class="buttons"><button>HbnB</button></a>
                         </div>
                     </div>
-                </div>
 
+                    </div>
+                </div>
             </div>
     </section>
 
 
     <section id="contact" class="contact-section">
-        
+        <div class="section-container">
+            <h2 class="section-title">
+                <span class="span-title">Contact</span>
+                <span class="span-text">Feel free to Contact me by submitting the form below and I will get back to you as soon as possible</span>
+            </h2>
+
+            <form action="#" class="contact-form" method="post"><input type="hidden" name="form-name" value="form 1">
+
+                <div class="form-field">
+                  <label class="form-label" for="name">Name</label>
+                  <input required="" placeholder="Enter Your Name" type="text" class="contact-form-input" name="name" id="name">
+                </div>
+
+                <div class="form-field">
+                  <label class="form-label" for="email">Email</label>
+                  <input required="" placeholder="Enter Your Email" type="email" class="contact-form-input" name="email" id="email">
+                </div>
+
+                <div class="form-field">
+                  <label class="form-label" for="message">Message</label>
+                  <textarea required="" cols="30" rows="10" class="contact-form-input" placeholder="Enter Your Message" name="message" id="message"></textarea>
+                </div>
+
+                <button type="submit" class="buttons">Submit</button>
+            </form>
+        </div>
     </section>
 
     <footer>
-
-    </footer>
+        <div class="footer-container">
+          <div class="main-footer">
+            <div class="footer-right">
+              <h2 class="footer-title">
+                <span>Social</span>
+              </h2>
+              <div class="footer-social">
+                <a href="https://vieilledent.eu"><img src="images/logos/dent.png" alt="vieilledent.eu"></a>
+                <a href="https://www.linkedin.com/in/adrien-vieilledent-791b39346/"><img src="images/logos/linkedin.svg" alt="LinkedIn"></a>
+                <a href="https://github.com/vlldnt"><img src="images/logos/github.svg" alt="GitHub"></a>
+                <a href="https://www.youtube.com/@OlosNah"><img src="images/logos/youtube.svg" alt=""></a>
+              </div>
+            </div>
+            <div class="footer-right">
+              <h2 class="footer-title">Adrien Vieilledent</h2>
+              <p class="footer-text">
+                A Frontend-focused Web Developer currently studying and learning how to build responsive and user-friendly Websites and Web Applications, aiming to contribute to impactful and modern digital products.</p>
+            </div>
+          </div>
+  
+          <!-- If you give me some credit or shoutout here by linking to my website, then it will be a big thing for me and will help me a lot :) -->
+          <div class="footer-bottom">
+            © Copyright
+            <script>
+              document.write(new Date().getFullYear());
+            </script>
+            . Made by
+            <a rel="noreferrer" target="_blank" href="https://vieilledent.eu">Adrien Vieilledent</a>
+          </div>
+        </div>
+      </footer>
 </body>
 </html>
