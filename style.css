@@ -74,8 +74,8 @@ header {
 }
 
 .socials img {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
 }
 
 .scroll {
@@ -93,19 +93,49 @@ header {
 }
 
 section {
-    margin-top: 110px;
+    height: 100vh;
 }
 
+.home-section {
+    display: block;
+    margin-top: 110px;
+    align-items: center;
+    border-top: 40vh;
+}
 
-/* Dark / Light mode */ 
+.home-container {
+    display: flex;
+}
 
-.dark-mode {
+.hero-content {
+    display: block;
+}
+
+.socials {
+    padding: 5px;
+    border: var(--line-color) solid 1px;
+    border-radius: 25px;
+    background-color: #fff;
+}
+
+.project-button {
+    width: 100%;
+    text-align: center;
+}
+
+.hero-title {
+    color: #ffae17;
+    text-transform: uppercase;
+}
+
+/* Dark / Light mode - Header specific */
+.dark-mode-header {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-label {
+.dark-mode-header label {
     width: 80px;
     height: 40px;
     position: relative;
@@ -118,7 +148,7 @@ label {
     background: #e2e2e2;
 }
 
-label:after {
+.dark-mode-header label:after {
     content: "";
     width: 36px;
     height: 36px;
@@ -131,55 +161,48 @@ label:after {
     transition: 0.3s;
 }
 
-input {
+.dark-mode-header input {
     width: 0;
     height: 0;
     visibility: hidden;
 }
 
-input:checked + label {
+.dark-mode-header input:checked + label {
     background: #24242493;
 }
 
-input:checked + label:after {
+.dark-mode-header input:checked + label:after {
     left: 78px;
     transform: translate(-100%);
     background: linear-gradient(180deg, #777, #3a3a3a);
 }
 
-label:active:after {
-    width: 50px;
-}
-
-input:checked + label {
-    background: #242424;
-}
-
-label svg {
+.dark-mode-header label svg {
     position: relative;
     width: 24px;
     top: -380px;
     z-index: 100;
-    color:#1e90ff ;
+    color: #1e90ff;
 }
 
-.sun {
+.dark-mode-header .sun {
     position: absolute;
     left: 8px;
     fill: #ffae17;
     transition: 0.3s ease;
 }
 
-.moon {
+.dark-mode-header .moon {
     position: absolute;
     left: 49px;
     fill: #8f8f8f7e;
     transition: 0.3s ease;
 }
 
-input:checked + label .sun {
+.dark-mode-header input:checked + label .sun {
     fill: #ffee006e;
 }
-input:checked + label .moon {
+
+.dark-mode-header input:checked + label .moon {
     fill: #ffffff;
 }
