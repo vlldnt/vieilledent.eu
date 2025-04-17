@@ -49,8 +49,67 @@ header {
 .header-menu a {
     text-decoration: none;
     color: inherit;
-    padding: 5px 20px 5px 20px;
+    padding: 5px 20px;
     justify-content: center;
+}
+
+/* Styles par défaut pour le menu */
+.header-menu {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.header-menu a {
+    text-decoration: none;
+    color: inherit;
+    padding: 5px 20px;
+    justify-content: center;
+}
+
+@media (min-width: 769px) {
+    .menu-toggle {
+        display: none; /* Cache le bouton sur les écrans larges */
+    }
+}
+
+/* Cacher le menu sur les petits écrans */
+@media (max-width: 768px) {
+    .header-menu {
+        display: none; /* Masque le menu par défaut */
+        flex-direction: column; /* Affiche les éléments verticalement */
+        position: absolute;
+        top: 80px; /* Juste en dessous du header */
+        right: 0;
+        background-color: var(--surface-color);
+        width: 100%;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+
+    .header-menu.show {
+        display: flex; /* Affiche le menu lorsqu'il est activé */
+    }
+
+    .menu-toggle {
+        display: block; /* Affiche le bouton toggle */
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: var(--accent-color);
+    }
+    .dark-mode .dark-mode-header {
+        display: none;
+    }
+    .image-container h1 {
+        font-size: 16px;
+        margin-left: 20px;
+        text-transform: uppercase;
+        text-align: center;
+        padding: 10px;
+    }
 }
 
 .menu-link {

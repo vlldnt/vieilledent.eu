@@ -11,3 +11,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+
+const menuToggle = document.querySelector('.menu-toggle');
+const headerMenu = document.querySelector('.header-menu');
+
+menuToggle.addEventListener('click', () => {
+  headerMenu.classList.toggle('show');
+});
+
+document.addEventListener('click', (event) => {
+  if (!headerMenu.contains(event.target) && !menuToggle.contains(event.target)) {
+    headerMenu.classList.remove('show');
+  }
+});
