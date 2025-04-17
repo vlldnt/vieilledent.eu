@@ -53,7 +53,6 @@ header {
     justify-content: center;
 }
 
-/* Styles par défaut pour le menu */
 .header-menu {
     display: flex;
     list-style-type: none;
@@ -68,19 +67,22 @@ header {
     justify-content: center;
 }
 
+.menu-toggle {
+    display: none;
+}
+
 @media (min-width: 769px) {
     .menu-toggle {
-        display: none; /* Cache le bouton sur les écrans larges */
+        display: none;
     }
 }
 
-/* Cacher le menu sur les petits écrans */
 @media (max-width: 768px) {
     .header-menu {
-        display: none; /* Masque le menu par défaut */
-        flex-direction: column; /* Affiche les éléments verticalement */
+        display: none;
+        flex-direction: column;
         position: absolute;
-        top: 80px; /* Juste en dessous du header */
+        top: 80px;
         right: 0;
         background-color: var(--surface-color);
         width: 100%;
@@ -89,11 +91,11 @@ header {
     }
 
     .header-menu.show {
-        display: flex; /* Affiche le menu lorsqu'il est activé */
+        display: flex;
     }
 
     .menu-toggle {
-        display: block; /* Affiche le bouton toggle */
+        display: block;
         background: none;
         border: none;
         font-size: 24px;
@@ -206,12 +208,9 @@ header {
     height: auto;
 }
 
-section {
-    height: 100vh;
-}
-
 .home-section {
     display: block;
+    height: 100vh;
     align-items: center;
     border-top: 40vh;
     justify-content: center;
@@ -470,4 +469,25 @@ section {
     width: 1500px;
     margin: 0 auto;
     margin-top: 20vh;
+}
+
+.section-container-projects {
+    margin-top: 110px;
+}
+
+.projects-content {
+    width: 50%;
+    margin: 0 auto;
+    display: block;
+    border: solid 1px black;
+    justify-content: center;
+}
+
+.project {
+    width: 45%;
+    padding: 20px;
+}
+
+section .projects-section {
+    height: auto;
 }
