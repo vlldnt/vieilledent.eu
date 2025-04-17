@@ -153,7 +153,6 @@ section {
 
 .home-section {
     display: block;
-    margin-top: 110px;
     align-items: center;
     border-top: 40vh;
     justify-content: center;
@@ -168,7 +167,7 @@ section {
 
 .hero-content {
     display: block;
-    width: 800px;
+    width: 90%;
     position: absolute;
     top: 30vh;
 }
@@ -216,6 +215,7 @@ section {
     max-width: 100%;
     overflow-wrap: break-word;
     word-wrap: break-word;
+    margin: 0 60px 0 60px;
 }
 
 /* Dark / Light mode - Header specific */
@@ -299,10 +299,12 @@ section {
 
 /* About Section */
 .about-section {
-    padding-top: 310px;
-    width: 1500px;
+    margin-top: 110px;
+    display: flex;
+    width: 100vw;
     max-width: 100%;
     margin: 0 auto;
+    background-color: #eeeeee;
 }
 
 .section-title {
@@ -317,7 +319,7 @@ section {
     max-width: 100%;
     overflow-wrap: break-word;
     word-wrap: break-word;
-    
+    margin: 0 60px 0 60px;   
 }
 
 .span-title::after {
@@ -348,7 +350,7 @@ section {
 }
 
 .main-card button {
-    margin-top: 45px;
+    margin-top: 20px;
 }
 
 .skills-card {
@@ -389,4 +391,10 @@ section {
 
 .project-section {
     background-color: #fff;
+}
+
+.section-container-about {
+    width: 1500px;
+    margin: 0 auto;
+    margin-top: 20vh;
 }
