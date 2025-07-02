@@ -1,229 +1,208 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adrien Vieilledent - Developpeur</title>
     <link rel="shortcut icon" href="assets/images/logos/dent.png" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
 </head>
-<body>
-    <header>
-        <div class="image-container">
-            <img class="header-img" src="assets/images/Photoprofil.png" alt="">
-            <h1 class="header-title">Adrien Vieilledent</h1>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Header -->
+    <header class="fixed top-0 w-full z-50 bg-white/90 shadow flex items-center justify-between px-4 md:px-12 h-20" data-aos="fade-down">
+        <div class="flex items-center gap-4">
+            <img class="rounded-full w-14 h-14 object-cover" src="assets/images/Photoprofil.png" alt="">
+            <h1 class="uppercase font-bold text-lg md:text-2xl tracking-wide">Adrien Vieilledent</h1>
         </div>
-            <button class="menu-toggle" aria-label="Toggle menu">
-        ☰
-    </button>
-        <ul class="header-menu">
-            <li><a class="menu-link" href="#">Home</a></li>
-            <li><a class="menu-link" href="#about">About</a></li>
-            <li><a class="menu-link" href="#projects">Projects</a></li>
-            <li><a class="menu-link" href="#contact">Contact</a></li>
+        <button class="menu-toggle md:hidden text-3xl px-2 py-1" aria-label="Toggle menu">☰</button>
+        <ul class="header-menu hidden md:flex gap-4 lg:gap-8 font-semibold text-base md:text-lg">
+            <li><a class="menu-link hover:text-blue-600 transition" href="#">Home</a></li>
+            <li><a class="menu-link hover:text-blue-600 transition" href="#about">About</a></li>
+            <li><a class="menu-link hover:text-blue-600 transition" href="#projects">Projects</a></li>
+            <li><a class="menu-link hover:text-blue-600 transition" href="#contact">Contact</a></li>
         </ul>
-        <div class="dark-mode dark-mode-header">
-            <input type="checkbox" id="darkmode-toggle-header" />
-            <label class="label-dark" for="darkmode-toggle-header">
-                <svg class="sun" width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 1.25C12.4142 1.25 12.75 1.58579 12.75 2V4C12.75 4.41421 12.4142 4.75 12 4.75C11.5858 4.75 11.25 4.41421 11.25 4V2C11.25 1.58579 11.5858 1.25 12 1.25ZM3.66865 3.71609C3.94815 3.41039 4.42255 3.38915 4.72825 3.66865L6.95026 5.70024C7.25596 5.97974 7.2772 6.45413 6.9977 6.75983C6.7182 7.06553 6.2438 7.08677 5.9381 6.80727L3.71609 4.77569C3.41039 4.49619 3.38915 4.02179 3.66865 3.71609ZM20.3314 3.71609C20.6109 4.02179 20.5896 4.49619 20.2839 4.77569L18.0619 6.80727C17.7562 7.08677 17.2818 7.06553 17.0023 6.75983C16.7228 6.45413 16.744 5.97974 17.0497 5.70024L19.2718 3.66865C19.5775 3.38915 20.0518 3.41039 20.3314 3.71609ZM12 7.75C9.65279 7.75 7.75 9.65279 7.75 12C7.75 14.3472 9.65279 16.25 12 16.25C14.3472 16.25 16.25 14.3472 16.25 12C16.25 9.65279 14.3472 7.75 12 7.75ZM6.25 12C6.25 8.82436 8.82436 6.25 12 6.25C15.1756 6.25 17.75 8.82436 17.75 12C17.75 15.1756 15.1756 17.75 12 17.75C8.82436 17.75 6.25 15.1756 6.25 12ZM1.25 12C1.25 11.5858 1.58579 11.25 2 11.25H4C4.41421 11.25 4.75 11.5858 4.75 12C4.75 12.4142 4.41421 12.75 4 12.75H2C1.58579 12.75 1.25 12.4142 1.25 12ZM19.25 12C19.25 11.5858 19.5858 11.25 20 11.25H22C22.4142 11.25 22.75 11.5858 22.75 12C22.75 12.4142 22.4142 12.75 22 12.75H20C19.5858 12.75 19.25 12.4142 19.25 12ZM17.0255 17.0252C17.3184 16.7323 17.7933 16.7323 18.0862 17.0252L20.3082 19.2475C20.6011 19.5404 20.601 20.0153 20.3081 20.3082C20.0152 20.6011 19.5403 20.601 19.2475 20.3081L17.0255 18.0858C16.7326 17.7929 16.7326 17.3181 17.0255 17.0252ZM6.97467 17.0253C7.26756 17.3182 7.26756 17.7931 6.97467 18.086L4.75244 20.3082C4.45955 20.6011 3.98468 20.6011 3.69178 20.3082C3.39889 20.0153 3.39889 19.5404 3.69178 19.2476L5.91401 17.0253C6.2069 16.7324 6.68177 16.7324 6.97467 17.0253ZM12 19.25C12.4142 19.25 12.75 19.5858 12.75 20V22C12.75 22.4142 12.4142 22.75 12 22.75C11.5858 22.75 11.25 22.4142 11.25 22V20C11.25 19.5858 11.5858 19.25 12 19.25Z"/>
-                </svg>
-                <svg class="moon" width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path clip-rule="evenodd" d="M3.39703 11.6315C3.39703 16.602 7.42647 20.6315 12.397 20.6315C15.6858 20.6315 18.5656 18.8664 20.1358 16.23C16.7285 17.3289 12.6922 16.7548 9.98282 14.0455C7.25201 11.3146 6.72603 7.28415 7.86703 3.89293C5.20697 5.47927 3.39703 8.38932 3.39703 11.6315ZM21.187 13.5851C22.0125 13.1021 23.255 13.6488 23 14.5706C21.7144 19.2187 17.4543 22.6315 12.397 22.6315C6.3219 22.6315 1.39703 17.7066 1.39703 11.6315C1.39703 6.58874 4.93533 2.25845 9.61528 0.999986C10.5393 0.751502 11.0645 1.99378 10.5641 2.80935C8.70026 5.84656 8.83194 10.0661 11.397 12.6312C13.9319 15.1662 18.1365 15.3702 21.187 13.5851Z"/>
-                </svg>
+        <div class="dark-mode dark-mode-header ml-4 hidden md:flex items-center">
+            <input type="checkbox" id="darkmode-toggle-header" class="hidden" />
+            <label class="label-dark cursor-pointer flex items-center gap-2" for="darkmode-toggle-header">
+                <svg class="sun w-6 h-6" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1.25C12.4142 1.25 12.75 1.58579 12.75 2V4C12.75 4.41421 12.4142 4.75 12 4.75C11.5858 4.75 11.25 4.41421 11.25 4V2C11.25 1.58579 11.5858 1.25 12 1.25ZM3.66865 3.71609C3.94815 3.41039 4.42255 3.38915 4.72825 3.66865L6.95026 5.70024C7.25596 5.97974 7.2772 6.45413 6.9977 6.75983C6.7182 7.06553 6.2438 7.08677 5.9381 6.80727L3.71609 4.77569C3.41039 4.49619 3.38915 4.02179 3.66865 3.71609ZM20.3314 3.71609C20.6109 4.02179 20.5896 4.49619 20.2839 4.77569L18.0619 6.80727C17.7562 7.08677 17.2818 7.06553 17.0023 6.75983C16.7228 6.45413 16.744 5.97974 17.0497 5.70024L19.2718 3.66865C19.5775 3.38915 20.0518 3.41039 20.3314 3.71609ZM12 7.75C9.65279 7.75 7.75 9.65279 7.75 12C7.75 14.3472 9.65279 16.25 12 16.25C14.3472 16.25 16.25 14.3472 16.25 12C16.25 9.65279 14.3472 7.75 12 7.75ZM6.25 12C6.25 8.82436 8.82436 6.25 12 6.25C15.1756 6.25 17.75 8.82436 17.75 12C17.75 15.1756 15.1756 17.75 12 17.75C8.82436 17.75 6.25 15.1756 6.25 12ZM1.25 12C1.25 11.5858 1.58579 11.25 2 11.25H4C4.41421 11.25 4.75 11.5858 4.75 12C4.75 12.4142 4.41421 12.75 4 12.75H2C1.58579 12.75 1.25 12.4142 1.25 12ZM19.25 12C19.25 11.5858 19.5858 11.25 20 11.25H22C22.4142 11.25 22.75 11.5858 22.75 12C22.75 12.4142 22.4142 12.75 22 12.75H20C19.5858 12.75 19.25 12.4142 19.25 12ZM17.0255 17.0252C17.3184 16.7323 17.7933 16.7323 18.0862 17.0252L20.3082 19.2475C20.6011 19.5404 20.601 20.0153 20.3081 20.3082C20.0152 20.6011 19.5403 20.601 19.2475 20.3081L17.0255 18.0858C16.7326 17.7929 16.7326 17.3181 17.0255 17.0252ZM6.97467 17.0253C7.26756 17.3182 7.26756 17.7931 6.97467 18.086L4.75244 20.3082C4.45955 20.6011 3.98468 20.6011 3.69178 20.3082C3.39889 20.0153 3.39889 19.5404 3.69178 19.2476L5.91401 17.0253C6.2069 16.7324 6.68177 16.7324 6.97467 17.0253ZM12 19.25C12.4142 19.25 12.75 19.5858 12.75 20V22C12.75 22.4142 12.4142 22.75 12 22.75C11.5858 22.75 11.25 22.4142 11.25 22V20C11.25 19.5858 11.5858 19.25 12 19.25Z"/></svg>
+                <svg class="moon w-6 h-6" viewBox="0 0 24 24" fill="none"><path clip-rule="evenodd" d="M3.39703 11.6315C3.39703 16.602 7.42647 20.6315 12.397 20.6315C15.6858 20.6315 18.5656 18.8664 20.1358 16.23C16.7285 17.3289 12.6922 16.7548 9.98282 14.0455C7.25201 11.3146 6.72603 7.28415 7.86703 3.89293C5.20697 5.47927 3.39703 8.38932 3.39703 11.6315ZM21.187 13.5851C22.0125 13.1021 23.255 13.6488 23 14.5706C21.7144 19.2187 17.4543 22.6315 12.397 22.6315C6.3219 22.6315 1.39703 17.7066 1.39703 11.6315C1.39703 6.58874 4.93533 2.25845 9.61528 0.999986C10.5393 0.751502 11.0645 1.99378 10.5641 2.80935C8.70026 5.84656 8.83194 10.0661 11.397 12.6312C13.9319 15.1662 18.1365 15.3702 21.187 13.5851Z"/></svg>
             </label>
         </div>
     </header>
-    
-    <section id="home" class="home-section">
-        <div class="home-container">
-            <div class="socials">
-                <div class="social"><a href="https://vieilledent.eu"><img src="assets/images/logos/dent.png" alt="vieilledent.eu"></a></div>
-                <div class="social"><a href="https://www.linkedin.com/in/adrien-vieilledent-791b39346/"><img src="assets/images/logos/linkedin.svg" alt="LinkedIn"></a></div>
-                <div class="social"><a href="https://github.com/vlldnt"><img src="assets/images/logos/github.svg" alt="GitHub"></a></div>
-                <div class="social"><a href="https://www.youtube.com/@OlosNah"><img src="assets/images/logos/youtube.svg" alt=""></a></div>
-            </div>
-            <div class="hero-content">
-                <div class="home-hero">
-                    <h1 class="span-title">Hey, i'm Adrien Vieilledent</h1>
-                    <p class="hero-text">I'm passionate about building elegant and functional digital experiences. <br>
-                        Currently a junior in training, constantly expanding my skills and growing in the field.</p>
-                </div>
-                <div class="project-button">
-                    <a href="#projects"><button class="buttons">Projects</button></a>
-                </div>
+    <!-- Mobile menu -->
+    <ul class="header-menu-mobile fixed top-20 left-0 w-full bg-white shadow-lg flex-col gap-4 font-semibold text-lg py-4 px-6 hidden md:hidden z-40">
+        <li><a class="menu-link block py-2 hover:text-blue-600 transition" href="#">Home</a></li>
+        <li><a class="menu-link block py-2 hover:text-blue-600 transition" href="#about">About</a></li>
+        <li><a class="menu-link block py-2 hover:text-blue-600 transition" href="#projects">Projects</a></li>
+        <li><a class="menu-link block py-2 hover:text-blue-600 transition" href="#contact">Contact</a></li>
+    </ul>
+
+    <!-- Home Section -->
+    <section id="home" data-aos="fade-up" class="pt-24 pb-12 flex flex-col justify-center items-center bg-[linear-gradient(to_right,rgba(245,245,245,0.8),rgba(245,245,245,0.8)),url('assets/images/logos/background.svg')] bg-cover bg-center relative min-h-screen">
+        <div class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 flex flex-col gap-4 bg-white/80 rounded-2xl p-2 shadow-lg border border-gray-200 z-20"
+     style="max-width:56px"
+     data-aos="fade-right">
+            <a href="https://vieilledent.eu"><img class="w-10 h-10" src="assets/images/logos/dent.png" alt="vieilledent.eu"></a>
+            <a href="https://www.linkedin.com/in/adrien-vieilledent-791b39346/"><img class="w-10 h-10" src="assets/images/logos/linkedin.svg" alt="LinkedIn"></a>
+            <a href="https://github.com/vlldnt"><img class="w-10 h-10" src="assets/images/logos/github.svg" alt="GitHub"></a>
+            <a href="https://www.youtube.com/@OlosNah"><img class="w-10 h-10" src="assets/images/logos/youtube.svg" alt="YouTube"></a>
+        </div>
+        <div class="flex flex-col items-center gap-6 mt-8 flex-1 justify-center w-full">
+            <h1 class="text-3xl md:text-5xl font-bold text-center">Hey, I'm Adrien Vieilledent</h1>
+            <p class="text-lg md:text-xl text-center max-w-2xl">I'm passionate about building elegant and functional digital experiences.<br>Currently a junior in training, constantly expanding my skills and growing in the field.</p>
+            <div class="flex flex-col sm:flex-row gap-4 mt-4">
+                <a href="#about" class="w-full sm:w-auto"><button class="buttons bg-gray-200 hover:bg-gray-300 text-blue-700 font-semibold rounded-lg px-8 py-3 shadow w-full sm:w-auto">About</button></a>
+                <a href="#projects" class="w-full sm:w-auto"><button class="buttons bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg px-8 py-3 shadow w-full sm:w-auto">Projects</button></a>
             </div>
         </div>
-        <div class="scroll-div">
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2">
             <a href="#about">
-                <div class="scroll"></div>
+                <div class="w-8 h-14 border-2 border-black rounded-full flex items-end justify-center animate-bounce">
+                    <div class="w-2 h-2 bg-black rounded-full mb-2"></div>
+                </div>
             </a>
         </div>
     </section>
 
-
-    <section id="about" class="about-section">
-        <div class="section-container-about">
-            <h2 class="section-title">
-                <span class="span-title">About Me</span>
-                <span class="span-text">Here you will find more information about me, what I do, and my current skills mostly in terms of programming and technology</span>
+    <!-- About Section -->
+    <section id="about" data-aos="fade-up" class="about-section scroll-mt-20 bg-[linear-gradient(to_right,rgba(245,245,245,0.8),rgba(245,245,245,0.8)),url('assets/images/logos/background.svg')] bg-cover bg-center py-20 min-h-screen h-auto sm:min-h-[600px]">
+        <div class="max-w-5xl mx-auto px-4">
+            <h2 class="section-title flex flex-col items-center text-center mb-12">
+                <span class="span-title uppercase text-3xl md:text-5xl font-bold">About Me</span>
+                <span class="span-text mt-4 text-gray-500 text-base md:text-lg max-w-2xl">Here you will find more information about me, what I do, and my current skills mostly in terms of programming and technology</span>
             </h2>
-
-            <div class="about-card">
-                <div class="main-card">
-                    <h3 class="about-title">Get to know me!</h3>
-                    <p class="text-para">I'm a junior web enthusiast currently focused on learning and improving in all areas of web development. I'm especially interested in creating clean, functional, and user-friendly interfaces. You can check out some of my early work in the Projects section.</p>
-                    <p class="text-para">I enjoy sharing what I learn along the way, hoping it can be helpful to others who are also starting their journey in tech. </p>
-                    <p class="text-para">I'm open to internship or junior-level opportunities where I can keep learning, contribute to real projects, and grow as a developer. If you think we could work together, don't hesitate to reach out.</p>
-                    
-                    <button class="buttons">Contact</button>
+            <div class="flex flex-col md:flex-row gap-8 md:gap-16">
+                <div class="main-card md:w-1/2 bg-white rounded-2xl shadow p-8 flex flex-col" data-aos="fade-right">
+                    <h3 class="about-title text-2xl md:text-3xl font-bold mb-4">Get to know me!</h3>
+                    <p class="text-para mb-2">I'm a junior web enthusiast currently focused on learning and improving in all areas of web development. I'm especially interested in creating clean, functional, and user-friendly interfaces. You can check out some of my early work in the Projects section.</p>
+                    <p class="text-para mb-2">I enjoy sharing what I learn along the way, hoping it can be helpful to others who are also starting their journey in tech.</p>
+                    <p class="text-para mb-4">I'm open to internship or junior-level opportunities where I can keep learning, contribute to real projects, and grow as a developer. If you think we could work together, don't hesitate to reach out.</p>
+                    <button class="buttons bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg px-6 py-2 mt-2 w-fit">Contact</button>
                 </div>
-                <div class="skills-card">
-                    <h3 class="about-title">My Skills</h3>
-                    <div class="skills">
-                        <div class="skill"><img src="assets/images/logos/c.svg" alt="html"></div>
-                        <div class="skill"><img src="assets/images/logos/html.svg" alt="html"></div>
-                        <div class="skill"><img src="assets/images/logos/css.svg" alt="css"></div>
-                        <div class="skill"><img src="assets/images/logos/js.svg" alt="javascript"></div>
-                        <div class="skill"><img src="assets/images/logos/python.svg" alt="python"></div>
-                        <div class="skill"><img src="assets/images/logos/sql.svg" alt="sql"></div>
-                        <div class="skill"><img src="assets/images/logos/github.svg" alt="github"></div>
-                        <div class="skill"><img src="assets/images/logos/vscode.svg" alt="csvode"></div>
-                        <div class="skill"><img src="assets/images/logos/terminal.png" alt="terminam"></div>
+                <div class="skills-card md:w-1/2 bg-white rounded-2xl shadow p-8 flex flex-col" data-aos="fade-left">
+                    <h3 class="about-title text-2xl md:text-3xl font-bold mb-4">My Skills</h3>
+                    <div class="skills flex flex-wrap gap-4">
+                        <div class="skill w-16 h-16 flex items-center justify-center bg-gray-100 rounded-full"><img src="assets/images/logos/c.svg" alt="c"></div>
+                        <div class="skill w-16 h-16 flex items-center justify-center bg-gray-100 rounded-full"><img src="assets/images/logos/html.svg" alt="html"></div>
+                        <div class="skill w-16 h-16 flex items-center justify-center bg-gray-100 rounded-full"><img src="assets/images/logos/css.svg" alt="css"></div>
+                        <div class="skill w-16 h-16 flex items-center justify-center bg-gray-100 rounded-full"><img src="assets/images/logos/js.svg" alt="javascript"></div>
+                        <div class="skill w-16 h-16 flex items-center justify-center bg-gray-100 rounded-full"><img src="assets/images/logos/python.svg" alt="python"></div>
+                        <div class="skill w-16 h-16 flex items-center justify-center bg-gray-100 rounded-full"><img src="assets/images/logos/sql.svg" alt="sql"></div>
+                        <div class="skill w-16 h-16 flex items-center justify-center bg-gray-100 rounded-full"><img src="assets/images/logos/github.svg" alt="github"></div>
+                        <div class="skill w-16 h-16 flex items-center justify-center bg-gray-100 rounded-full"><img src="assets/images/logos/vscode.svg" alt="vscode"></div>
+                        <div class="skill w-16 h-16 flex items-center justify-center bg-gray-100 rounded-full"><img src="assets/images/logos/terminal.png" alt="terminal"></div>
                     </div>
                 </div>
             </div>
+        </div>
     </section>
 
-
-    <section id="projects" class="projects-section">
-            <div class="section-container-projects">
-                <h2 class="section-title">
-                    <span class="span-title">Projects</span>
-                    <span class="span-text">Here you will find some of the personal and schools projects that I created with each project containing its own case study</span>
-                </h2>
-                <div class="projects-content">
-
-                    <div class="project">
-                        <div class="project-image">
-                            <img src="assets/images/projects-images/simpleShell.png" alt="">
+    <!-- Projects Section -->
+    <section id="projects" data-aos="fade-up" class="projects-section scroll-mt-20 bg-white py-20">
+        <div class="max-w-5xl mx-auto px-4">
+            <h2 class="section-title flex flex-col items-center text-center mb-12">
+                <span class="span-title uppercase text-3xl md:text-5xl font-bold">Projects</span>
+                <span class="span-text mt-4 text-gray-500 text-base md:text-lg max-w-2xl">Here you will find some of the personal and schools projects that I created with each project containing its own case study</span>
+            </h2>
+            <div class="projects-content flex flex-col gap-8">
+                <div class="project flex flex-col md:flex-row bg-gray-50 rounded-2xl shadow p-6 gap-6" data-aos="fade-right">
+                    <div class="project-image flex-shrink-0 flex justify-center items-center"><img class="w-44 h-auto rounded-xl" src="assets/images/projects-images/simpleShell.png" alt=""></div>
+                    <div class="project-details flex flex-col justify-between">
+                        <div class="title-project flex items-center gap-2 mb-2">
+                            <h3 class="project-title text-xl md:text-2xl font-bold">Holberton School - Simple Shell</h3>
+                            <img class="w-8 h-8" src="assets/images/logos/c.svg" alt="c">
                         </div>
-                        <div class="project-details">
-                            <div class="title-project">
-                                <h3 class="project-title">Holberton School - Simple Shell</h3>
-                                <img src="assets/images/logos/c.svg" alt="c">
-                            </div>
-                            <p class="project-text">
-                                This project consists of creating a simple shell program written in C that mimics the basic behavior of a UNIX shell. The shell provides a command-line interface where users can enter standard system commands. The goal of this project is to deepen understanding of low-level system programming concepts in a UNIX-like environment.
-                            </p>
-                            <div class="project-button"><a href="" class="buttons">Simple Shell</a></div>
-                        </div>
-                    </div> 
-
-                    <div class="project">
-                        <div class="project-image">
-                            <img src="assets/images/projects-images/hbnb.png" alt="">
-                        </div>
-                        <div class="project-details">
-                            <div class="title-project">
-                                <h3 class="project-title">Holberton School - HbnB</h3>
-                                <img src="assets/images/logos/python.svg" alt="python">
-                                <img src="assets/images/logos/js.svg" alt="js">
-                                <img src="assets/images/logos/sql.svg" alt="sql">
-                                <img src="assets/images/logos/html.svg" alt="html">
-                                <img src="assets/images/logos/css.svg" alt="css">
-                            </div>
-                            <p class="project-text">
-                                The Holberton School HBNB Project is a web development project where students create a simple Airbnb clone using various technologies, such as Python, Flask, and SQLAlchemy. It is part of the Full Stack Software Engineering curriculum at Holberton School.
-                            </p>
-                            <div class="project-button"><a href="" class="buttons">HbnB</a></div>
-                        </div>
+                        <p class="project-text mb-4">This project consists of creating a simple shell program written in C that mimics the basic behavior of a UNIX shell. The shell provides a command-line interface where users can enter standard system commands. The goal of this project is to deepen understanding of low-level system programming concepts in a UNIX-like environment.</p>
+                        <div class="project-button"><a href="#" class="buttons bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg px-6 py-2">Simple Shell</a></div>
                     </div>
-
-                    <div class="project">
-                        <div class="project-image">
-                            <img src="assets/images/projects-images/portfolio.png" alt="">
+                </div>
+                <div class="project flex flex-col md:flex-row bg-gray-50 rounded-2xl shadow p-6 gap-6" data-aos="fade-left">
+                    <div class="project-image flex-shrink-0 flex justify-center items-center"><img class="w-44 h-auto rounded-xl" src="assets/images/projects-images/hbnb.png" alt=""></div>
+                    <div class="project-details flex flex-col justify-between">
+                        <div class="title-project flex items-center gap-2 mb-2">
+                            <h3 class="project-title text-xl md:text-2xl font-bold">Holberton School - HbnB</h3>
+                            <img class="w-8 h-8" src="assets/images/logos/python.svg" alt="python">
+                            <img class="w-8 h-8" src="assets/images/logos/js.svg" alt="js">
+                            <img class="w-8 h-8" src="assets/images/logos/sql.svg" alt="sql">
+                            <img class="w-8 h-8" src="assets/images/logos/html.svg" alt="html">
+                            <img class="w-8 h-8" src="assets/images/logos/css.svg" alt="css">
                         </div>
-                        <div class="project-details">
-                            <div class="title-project">
-                                <h3 class="project-title">Portfolio - Adrien Vieilledent</h3>
-                                <img src="assets/images/logos/html.svg" alt="html">
-                                <img src="assets/images/logos/css.svg" alt="css">
-                                <img src="assets/images/logos/js.svg" alt="js">
-                            </div>
-                            <p class="project-text">
-                                This is my first personal website. I'm learning HTML, CSS, and JavaScript throughout the process, and gaining a deeper understanding of how to structure content, style pages, and add interactivity to the web.
-                            </p>
-                            <div class="project-button"><a href="" class="buttons">vieilledent.eu</a></div>
-                        </div>
+                        <p class="project-text mb-4">The Holberton School HBNB Project is a web development project where students create a simple Airbnb clone using various technologies, such as Python, Flask, and SQLAlchemy. It is part of the Full Stack Software Engineering curriculum at Holberton School.</p>
+                        <div class="project-button"><a href="#" class="buttons bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg px-6 py-2">HbnB</a></div>
                     </div>
-
-
+                </div>
+                <div class="project flex flex-col md:flex-row bg-gray-50 rounded-2xl shadow p-6 gap-6" data-aos="fade-right">
+                    <div class="project-image flex-shrink-0 flex justify-center items-center"><img class="w-44 h-auto rounded-xl" src="assets/images/projects-images/portfolio.png" alt=""></div>
+                    <div class="project-details flex flex-col justify-between">
+                        <div class="title-project flex items-center gap-2 mb-2">
+                            <h3 class="project-title text-xl md:text-2xl font-bold">App IAKOA - iOS</h3>
+                            <img class="w-8 h-8" src="assets/images/logos/swift.svg" alt="swift">
+                            <img class="w-8 h-8" src="assets/images/logos/xcode.svg" alt="xcode">
+                            <img class="w-8 h-8" src="assets/images/logos/firebase.svg" alt="firebase">
+                        </div>
+                        <p class="project-text mb-4">IAKOA is an iOS application designed to help you discover events happening around you. With an intuitive interface, geolocation features, and the ability to create your own events, it makes it easy to stay connected to what's going on nearby and contribute to your local community</p>
+                        <div class="project-button"><a href="#" class="buttons bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg px-6 py-2">vieilledent.eu/iakoa</a></div>
                     </div>
                 </div>
             </div>
+        </div>
     </section>
 
-
-    <section id="contact" class="contact-section">
-        <div class="section-container">
-            <h2 class="section-title">
-                <span class="span-title">Contact</span>
-                <span class="span-text">Feel free to Contact me by submitting the form below and I will get back to you as soon as possible</span>
+    <!-- Contact Section -->
+    <section id="contact" data-aos="fade-up" class="contact-section scroll-mt-20 bg-gradient-to-r from-gray-100/80 to-gray-200/80 py-20">
+        <div class="max-w-2xl mx-auto px-4">
+            <h2 class="section-title flex flex-col items-center text-center mb-12">
+                <span class="span-title uppercase text-3xl md:text-5xl font-bold">Contact</span>
+                <span class="span-text mt-4 text-gray-500 text-base md:text-lg max-w-2xl">Feel free to Contact me by submitting the form below and I will get back to you as soon as possible</span>
             </h2>
-
-            <form action="#" class="contact-form" method="post">
-                <div class="form-field">
-                    <input required placeholder=" " type="text" class="contact-form-input" name="name" id="name">
-                    <label class="form-label" for="name">Name</label>
+            <form action="#" class="contact-form flex flex-col gap-6 bg-white rounded-2xl shadow p-8" method="post">
+                <div class="form-field flex flex-col gap-2">
+                    <label class="form-label text-gray-600 font-semibold" for="name">Name</label>
+                    <input required placeholder="Your name" type="text" class="contact-form-input border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" name="name" id="name">
                 </div>
-            
-                <div class="form-field">
-                    <input required placeholder=" " type="email" class="contact-form-input" name="email" id="email">
-                    <label class="form-label" for="email">Email</label>
+                <div class="form-field flex flex-col gap-2">
+                    <label class="form-label text-gray-600 font-semibold" for="email">Email</label>
+                    <input required placeholder="Your email" type="email" class="contact-form-input border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" name="email" id="email">
                 </div>
-            
-                <div class="form-field">
-                    <textarea required placeholder=" " class="contact-form-input" name="message" id="message"></textarea>
-                    <label class="form-label" for="message">Message</label>
+                <div class="form-field flex flex-col gap-2">
+                    <label class="form-label text-gray-600 font-semibold" for="message">Message</label>
+                    <textarea required placeholder="Your message" class="contact-form-input border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" name="message" id="message"></textarea>
                 </div>
-            
-                <button type="submit" class="buttons">Submit</button>
+                <button type="submit" class="buttons bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg px-8 py-3">Submit</button>
             </form>
         </div>
     </section>
 
-    <footer>
-        <div class="footer-container">
-          <div class="main-footer">
-            <div class="footer-right">
-              <h2 class="footer-title">
-                <span>Social</span>
-              </h2>
-              <div class="footer-social">
-                <a href="https://vieilledent.eu"><img src="assets/images/logos/dent.png" alt="vieilledent.eu"></a>
-                <a href="https://www.linkedin.com/in/adrien-vieilledent-791b39346/"><img src="assets/images/logos/linkedin.svg" alt="LinkedIn"></a>
-                <a href="https://github.com/vlldnt"><img src="assets/images/logos/github.svg" alt="GitHub"></a>
-                <a href="https://www.youtube.com/@OlosNah"><img src="assets/images/logos/youtube.svg" alt=""></a>
-              </div>
+    <!-- Footer -->
+    <footer class="bg-blue-600 text-white py-10 mt-8" data-aos="fade-up">
+        <div class="footer-container max-w-5xl mx-auto px-4 flex flex-col gap-8">
+            <div class="main-footer flex flex-col md:flex-row justify-between gap-8">
+                <div class="footer-right flex-1 min-w-[200px]">
+                    <h2 class="footer-title text-xl font-bold uppercase mb-4">Social</h2>
+                    <div class="footer-social flex gap-4">
+                        <a href="https://vieilledent.eu"><img class="w-10 h-10 rounded-full hover:scale-110 transition" src="assets/images/logos/dent.png" alt="vieilledent.eu"></a>
+                        <a href="https://www.linkedin.com/in/adrien-vieilledent-791b39346/"><img class="w-10 h-10 rounded-full hover:scale-110 transition" src="assets/images/logos/linkedin.svg" alt="LinkedIn"></a>
+                        <a href="https://github.com/vlldnt"><img class="w-10 h-10 rounded-full hover:scale-110 transition" src="assets/images/logos/github.svg" alt="GitHub"></a>
+                        <a href="https://www.youtube.com/@OlosNah"><img class="w-10 h-10 rounded-full hover:scale-110 transition" src="assets/images/logos/youtube.svg" alt="YouTube"></a>
+                    </div>
+                </div>
+                <div class="footer-right flex-1 min-w-[200px]">
+                    <h2 class="footer-title text-xl font-bold uppercase mb-4">Adrien Vieilledent</h2>
+                    <p class="footer-text text-base">A Frontend-focused Web Developer currently studying and learning how to build responsive and user-friendly Websites and Web Applications, aiming to contribute to impactful and modern digital products.</p>
+                </div>
             </div>
-            <div class="footer-right">
-              <h2 class="footer-title">Adrien Vieilledent</h2>
-              <p class="footer-text">
-                A Frontend-focused Web Developer currently studying and learning how to build responsive and user-friendly Websites and Web Applications, aiming to contribute to impactful and modern digital products.</p>
+            <div class="footer-bottom text-center text-sm border-t border-white/20 pt-4">
+                © Copyright <script>document.write(new Date().getFullYear());</script>. Made by
+                <a rel="noreferrer" target="_blank" href="https://vieilledent.eu" class="underline font-semibold">Adrien Vieilledent</a>
             </div>
-          </div>
-
-          <div class="footer-bottom">
-            © Copyright
-            <script>
-              document.write(new Date().getFullYear());
-            </script>
-            . Made by
-            <a rel="noreferrer" target="_blank" href="https://vieilledent.eu">Adrien Vieilledent</a>
-          </div>
         </div>
-      </footer>
-      <script src="script.js"></script>
+    </footer>
+    <script src="script.js"></script>
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>AOS.init({ once: false, duration: 800 });</script>
 </body>
 </html>

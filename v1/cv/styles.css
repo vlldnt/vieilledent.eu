@@ -1,0 +1,288 @@
+* {
+    font-family: "Hanken Grotesk", sans-serif !important;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    justify-content: center;
+    width: 1080px;
+    background-color:rgba(128, 128, 128, 0.1);
+    align-items: center;
+    display: flex;
+    border-color: black;
+    border: 1px;
+    padding: 5px;
+}
+
+header {
+    width: 25%;
+    justify-content: center;
+    text-align: center;
+}
+
+header a {
+    text-decoration: none;
+}
+
+.download-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.download-btn:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+.download-btn:active {
+    transform: scale(1)
+}
+
+.left-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    padding: 5px;
+}
+
+.left-content {
+    background-color: #5CB6F9;
+    margin: 15px;
+    border-radius: 10px;
+    width: 90%;
+    padding: 10px;
+}
+
+.text-info {
+    display: flex;
+    width: 100%;
+}
+
+.icons-info {
+    display: block;
+}
+
+.icon-item {
+    display: flex;
+}
+
+.right-col {
+    width: 70%;
+    font-size: larger;
+}
+
+.right-content {
+    padding: 1px;
+    margin: 10px;
+}
+
+.right-content p {
+    font-style: italic;
+}
+
+.experiences {
+    color: #12229D;
+}
+
+
+
+.name {
+    text-align: center;
+    background-color: #CAE8FF;
+    border-color: black;
+    border: 1px;
+    margin-top: 55px;
+    width: 92%;
+}
+
+.photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.photo img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5%;
+    display: block;
+}
+
+.outro-phrase p {
+    background-color: rgba(0, 255, 255, 0.363);
+    border-radius: 15px;
+    font-style: italic;
+    text-align: center;
+}
+
+strong.works {
+    color: #12229D;
+}
+
+h2 {
+    padding: 2px;
+    border-radius: 15px;
+    background-color: #12229D;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}
+
+.accordion {
+    cursor: pointer;
+    background-color: #5CB6F9;
+    color: black;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 18px;
+    border-radius: 5px;
+}
+.accordion-right {
+    cursor: pointer;
+    background-color: #12229D;
+    color: white;
+    padding: 15px;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.accordion-right:hover {
+    background-color: #5CB6F9;
+}
+
+.panel {
+    max-height: 0;
+    overflow: hidden;
+    background-color: #5CB6F9;
+    padding: 0px;
+    border-radius: 5px;
+    transition: max-height 0.2s ease-out;/
+}
+
+.panel-right {
+    max-height: 0;
+    overflow: hidden;
+    background-color: #F2F2F2;
+    border-radius: 5px;
+    transition: max-height 0.2s ease-out;/
+}
+
+
+.panel.open {
+    max-height: 500px;
+    padding: 10px;
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .container {
+        flex-direction: column;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .left-col, .right-col {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .left-content, .right-content {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    header {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .header-container h1 {
+        font-size: 1.8rem;
+    }
+
+    .header-container h2 {
+        font-size: 1.2rem;
+    }
+
+    .social-links .icon {
+        width: 25px;
+        height: 25px;
+    }
+
+    .intro {
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    .photo img {
+        max-width: 80%;
+        height: auto;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+        padding: 10px;
+    }
+
+    .accordion, .accordion-right {
+        font-size: 16px;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-container h1 {
+        font-size: 1.5rem;
+    }
+
+    .header-container h2 {
+        font-size: 1rem;
+    }
+
+    .social-links .icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .intro {
+        font-size: 0.9rem;
+    }
+
+    .photo img {
+        max-width: 100%;
+    }
+
+    h2 {
+        font-size: 1rem;
+    }
+
+    .accordion, .accordion-right {
+        font-size: 14px;
+        padding: 8px;
+    }
+}

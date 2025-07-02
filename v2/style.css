@@ -1,0 +1,7 @@
+@keyframes bounce-scroll {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+.scroll-bounce {
+  animation: bounce-scroll 1s infinite;
+}
