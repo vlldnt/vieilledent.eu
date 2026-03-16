@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adrien Vieilledent — Développeur</title>
+    <link rel="shortcut icon" href="assets/logos/dent.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Custom Cursor (desktop only) -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursor-follower"></div>
+
+    <!-- ========== NAVIGATION — Desktop ========== -->
+    <nav class="nav-desktop" id="nav-desktop">
+        <!-- Sliding bubble "hole" -->
+        <div class="nav-bubble" id="nav-bubble"></div>
+        <a href="#" class="nav-item active" data-section="0" aria-label="Home">
+            <div class="nav-icon-wrap">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+            </div>
+            <span class="nav-label">Home</span>
+            <div class="nav-active-bar"></div>
+        </a>
+        <a href="#" class="nav-item" data-section="1" aria-label="Projects">
+            <div class="nav-icon-wrap">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                    <line x1="8" y1="21" x2="16" y2="21" />
+                    <line x1="12" y1="17" x2="12" y2="21" />
+                </svg>
+            </div>
+            <span class="nav-label">Projects</span>
+            <div class="nav-active-bar"></div>
+        </a>
+        <a href="#" class="nav-item" data-section="2" aria-label="About">
+            <div class="nav-icon-wrap">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                </svg>
+            </div>
+            <span class="nav-label">About</span>
+            <div class="nav-active-bar"></div>
+        </a>
+        <a href="#" class="nav-item" data-section="3" aria-label="Contact">
+            <div class="nav-icon-wrap">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                    <polyline points="22,6 12,13 2,6" />
+                </svg>
+            </div>
+            <span class="nav-label">Contact</span>
+            <div class="nav-active-bar"></div>
+        </a>
+    </nav>
+
+    <!-- ========== NAVIGATION — Mobile Bottom Bar ========== -->
+    <nav class="nav-mobile" id="nav-mobile">
+        <!-- Sliding bubble "hole" -->
+        <div class="nav-mob-bubble" id="nav-mob-bubble"></div>
+        <a href="#" class="nav-mob-item active" data-section="0" aria-label="Home">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
+            </svg>
+        </a>
+        <a href="#" class="nav-mob-item" data-section="1" aria-label="Projects">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                <line x1="8" y1="21" x2="16" y2="21" />
+                <line x1="12" y1="17" x2="12" y2="21" />
+            </svg>
+        </a>
+        <a href="#" class="nav-mob-item" data-section="2" aria-label="About">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+            </svg>
+        </a>
+        <a href="#" class="nav-mob-item" data-section="3" aria-label="Contact">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+            </svg>
+        </a>
+    </nav>
+
+    <!-- ========== SECTIONS CONTAINER ========== -->
+    <main class="sections-viewport" id="viewport">
+
+        <!-- ===== Section 0: Hero ===== -->
+        <section class="section active" data-index="0" id="section-hero">
+            <div class="section-inner">
+
+                <!-- Social sidebar -->
+                <div class="social-sidebar">
+                    <a href="https://www.linkedin.com/in/adrien-vieilledent-791b39346/" target="_blank"
+                        class="social-link" aria-label="LinkedIn">
+                        <img src="assets/logos/linkedin.svg" alt="LinkedIn">
+                    </a>
+                    <a href="https://github.com/vlldnt" target="_blank" class="social-link" aria-label="GitHub">
+                        <img src="assets/logos/github.svg" alt="GitHub">
+                    </a>
+                    <a href="https://www.youtube.com/@OlosNah" target="_blank" class="social-link" aria-label="YouTube">
+                        <img src="assets/logos/youtube.svg" alt="YouTube">
+                    </a>
+                    <div class="social-line"></div>
+                    <a href="assets/CV_Adrien_V.pdf" download="CV_Adrien_Vieilledent.pdf" class="social-link social-cv"
+                        aria-label="Download CV">
+                        <img src="assets/logos/CV.png" alt="CV QR Code">
+                    </a>
+                </div>
+
+                <!-- Hero content -->
+                <div class="hero-center">
+                    <div class="hero-badge-row anim-item">
+                        <div class="hero-badge">
+                            <span class="badge-dot"></span>
+                            Available for opportunities
+                        </div>
+                    </div>
+                    <h1 class="hero-title">
+                        <span class="hero-line anim-item">Adrien</span>
+                        <span class="hero-line anim-item">Vieilledent<span class="accent">.</span></span>
+                    </h1>
+                    <p class="hero-subtitle anim-item">
+                        Building elegant &amp; functional digital experiences.<br>
+                        Junior developer, constantly learning and growing.
+                    </p>
+                    <div class="hero-cta anim-item">
+                        <a href="#" class="btn btn-primary" data-goto="1">View Projects</a>
+                        <a href="assets/CV_Adrien_V.pdf" download="CV_Adrien_Vieilledent.pdf"
+                            class="btn btn-secondary">Download CV</a>
+                        <a href="#" class="btn btn-secondary" data-goto="3">Get in Touch</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Section 1: Projects ===== -->
+        <section class="section" data-index="1" id="section-projects">
+            <div class="section-inner">
+                <div class="section-header">
+                    <span class="section-number anim-item">01</span>
+                    <h2 class="section-title anim-item">Projects</h2>
+                    <p class="section-desc anim-item">A selection of personal and school projects I've built.</p>
+                </div>
+
+                <div class="projects-grid">
+                    <a href="https://github.com/vlldnt/Portfolio-IAKOA" target="_blank" class="project-card anim-item">
+                        <div class="card-image">
+                            <img src="assets/projects/portfolio.png" alt="IAKOA iOS" loading="lazy">
+                            <div class="card-overlay">
+                                <span class="card-link">View Project</span>
+                            </div>
+                        </div>
+                        <div class="card-info">
+                            <div class="card-tags">
+                                <img src="assets/logos/swift.svg" alt="Swift" class="tag-icon">
+                                <img src="assets/logos/xcode.svg" alt="Xcode" class="tag-icon">
+                                <img src="assets/logos/firebase.svg" alt="Firebase" class="tag-icon">
+                            </div>
+                            <h3 class="card-title">IAKOA — iOS App</h3>
+                            <p class="card-desc">Discover local events with geolocation and community features.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://github.com/vlldnt/IAKOA-full_stack" target="_blank" class="project-card anim-item">
+                        <div class="card-image">
+                            <img src="assets/projects/iakoa-fullstack.png" alt="IAKOA Full Stack" loading="lazy">
+                            <div class="card-overlay">
+                                <span class="card-link">View Project</span>
+                            </div>
+                        </div>
+                        <div class="card-info">
+                            <div class="card-tags">
+                                <img src="assets/logos/python.svg" alt="Python" class="tag-icon">
+                                <img src="assets/logos/js.svg" alt="JS" class="tag-icon">
+                                <img src="assets/logos/sql.svg" alt="SQL" class="tag-icon">
+                            </div>
+                            <h3 class="card-title">IAKOA — Full Stack</h3>
+                            <p class="card-desc">Backend API and web interface for the IAKOA event platform.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://github.com/vlldnt/gpxtooth" target="_blank" class="project-card anim-item">
+                        <div class="card-image">
+                            <img src="assets/projects/gpxtooth.png" alt="GPXTooth" loading="lazy">
+                            <div class="card-overlay">
+                                <span class="card-link">View Project</span>
+                            </div>
+                        </div>
+                        <div class="card-info">
+                            <div class="card-tags">
+                                <img src="assets/logos/js.svg" alt="JS" class="tag-icon">
+                            </div>
+                            <h3 class="card-title">GPXTooth</h3>
+                            <p class="card-desc">Personal website to track my .gpx bike and runnings sessions.</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- See also -->
+                <div class="projects-see-also anim-item">
+                    <span class="see-also-label">See also</span>
+                    <div class="see-also-links">
+                        <a href="https://github.com/vlldnt/holbertonschool-simple_shell" target="_blank"
+                            class="see-also-item">
+                            <div class="see-also-top">
+                                <img src="assets/logos/c.svg" alt="C" class="tag-icon">
+                                <span>Simple Shell</span>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="5" y1="12" x2="19" y2="12" />
+                                    <polyline points="12 5 19 12 12 19" />
+                                </svg>
+                            </div>
+                            <span class="see-also-desc">Shell replica in C</span>
+                        </a>
+                        <a href="https://github.com/vlldnt/holbertonschool-hbnb" target="_blank" class="see-also-item">
+                            <div class="see-also-top">
+                                <img src="assets/logos/python.svg" alt="Python" class="tag-icon">
+                                <span>HBnB</span>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="5" y1="12" x2="19" y2="12" />
+                                    <polyline points="12 5 19 12 12 19" />
+                                </svg>
+                            </div>
+                            <span class="see-also-desc">Airbnb clone — Flask &amp; SQL</span>
+                        </a>
+                        <a href="https://github.com/vlldnt/XPTrackerClassicMoP" target="_blank" class="see-also-item">
+                            <div class="see-also-top">
+                                <img src="assets/logos/lua.svg" alt="Lua" class="tag-icon">
+                                <span>XPTracker MoP</span>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="5" y1="12" x2="19" y2="12" />
+                                    <polyline points="12 5 19 12 12 19" />
+                                </svg>
+                            </div>
+                            <span class="see-also-desc">WoW addon in Lua</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Section 2: About ===== -->
+        <section class="section" data-index="2" id="section-about">
+            <div class="section-inner">
+                <div class="section-header">
+                    <span class="section-number anim-item">02</span>
+                    <h2 class="section-title anim-item">About</h2>
+                    <p class="section-desc anim-item">A little more about who I am and what I do.</p>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-text anim-item">
+                        <h3 class="about-heading">Get to know me</h3>
+                        <p>I'm a junior web developer focused on creating clean, functional, and user-friendly
+                            interfaces. Passionate about the intersection of design and code.</p>
+                        <p>I enjoy sharing what I learn along the way, hoping it helps others starting their journey in
+                            tech.</p>
+                        <p>Open to internship or junior-level opportunities where I can contribute to real projects and
+                            grow as a developer.</p>
+                    </div>
+                    <div class="about-skills anim-item">
+                        <h3 class="about-heading">Skills &amp; Tools</h3>
+                        <div class="skills-grid">
+                            <div class="skill-item"><img src="assets/logos/python.svg" alt="Flask"><span>Flask</span>
+                            </div>
+                            <div class="skill-item"><img src="assets/logos/js.svg" alt="React / NodeJs"><span>React /
+                                    NodeJs</span></div>
+                            <div class="skill-item"><img src="assets/logos/sql.svg" alt="SQL"><span>SQL /
+                                    Postgres</span></div>
+                            <div class="skill-item"><img src="assets/logos/html.svg" alt="HTML"><span>HTML</span></div>
+                            <div class="skill-item"><img src="assets/logos/css.svg" alt="CSS"><span>CSS</span></div>
+                            <div class="skill-item"><img src="assets/logos/swift.svg" alt="Swift"><span>Swift</span>
+                            </div>
+                            <div class="skill-item"><img src="assets/logos/github.svg" alt="GitHub"><span>Git</span>
+                            </div>
+                            <div class="skill-item"><img src="assets/logos/vscode.svg" alt="VS Code"><span>VS
+                                    Code</span></div>
+                            <div class="skill-item"><img src="assets/logos/xcode.svg" alt="Xcode"><span>Xcode</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Section 3: Contact ===== -->
+        <section class="section" data-index="3" id="section-contact">
+            <div class="section-inner">
+                <div class="section-header">
+                    <span class="section-number anim-item">03</span>
+                    <h2 class="section-title anim-item">Contact</h2>
+                    <p class="section-desc anim-item">Have a project in mind? Let's talk.</p>
+                </div>
+
+                <form class="contact-form anim-item" id="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Tell me about your project..." rows="5"
+                            required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-submit">
+                        <span>Send Message</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13" />
+                            <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                        </svg>
+                    </button>
+                </form>
+
+                <div class="contact-footer anim-item">
+                    <div class="footer-links">
+                        <a href="https://www.linkedin.com/in/adrien-vieilledent-791b39346/" target="_blank">LinkedIn</a>
+                        <a href="https://github.com/vlldnt" target="_blank">GitHub</a>
+                        <a href="https://www.youtube.com/@OlosNah" target="_blank">YouTube</a>
+                    </div>
+                    <p class="footer-copy">&copy; 2026 Adrien Vieilledent</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
