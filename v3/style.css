@@ -655,7 +655,6 @@ a.project-card {
     margin-top: 28px;
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 18px;
 }
 
@@ -666,12 +665,11 @@ a.project-card {
     text-transform: uppercase;
     letter-spacing: 0.08em;
     white-space: nowrap;
-    padding-top: 10px;
 }
 
 .see-also-links {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 12px;
 }
 
@@ -681,7 +679,7 @@ a.project-card {
     flex-direction: column;
     gap: 0;
     flex: 1;
-    min-width: 0;
+    min-width: fit-content;
     padding: 12px 24px;
     background: var(--card-bg);
     border: 1px solid var(--border);
@@ -698,28 +696,30 @@ a.project-card {
     display: flex;
     align-items: center;
     gap: 8px;
-    overflow: hidden;
 }
 
 .see-also-top span {
-    overflow: hidden;
-    text-overflow: ellipsis;
     white-space: nowrap;
 }
 
 .see-also-item .tag-icon {
     width: 26px;
     height: 26px;
-    padding: 2px;
+    padding: 3px;
     flex-shrink: 0;
+    border-radius: 6px;
+    background: var(--bg-alt);
 }
 
 .see-also-item svg {
-    opacity: 0;
-    transform: translateX(-4px);
+    flex-shrink: 0;
+    opacity: 0.4;
     transition: opacity 0.3s var(--ease-out),
         transform 0.3s var(--ease-out);
-    flex-shrink: 0;
+}
+
+.see-also-item:hover svg {
+    opacity: 1;
 }
 
 .see-also-desc {
@@ -751,10 +751,7 @@ a.project-card {
     box-shadow: 0 4px 16px rgba(37, 99, 235, 0.1);
 }
 
-.see-also-item:hover svg {
-    opacity: 1;
-    transform: translateX(0);
-}
+
 
 .see-also-item:hover .see-also-desc {
     opacity: 1;
