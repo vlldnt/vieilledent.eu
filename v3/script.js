@@ -408,6 +408,34 @@
   // Reposition bubble on resize
   window.addEventListener('resize', () => moveBubble(currentIndex, false));
 
+  /* ============================================
+       THEME TOGGLE — light/dark mode
+       ============================================ */
+  function toggleTheme() {
+    const isDark =
+      document.documentElement.getAttribute('data-theme') === 'dark';
+    if (isDark) {
+      document.documentElement.removeAttribute('data-theme');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+    localStorage.setItem('theme', isDark ? 'light' : 'dark');
+  }
+
+  // Restore saved preference
+  const saved = localStorage.getItem('theme');
+  if (saved === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+
+  // Desktop toggle
+  const themeToggle = document.getElementById('theme-toggle');
+  if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+
+  // Mobile toggle (inside nav bar)
+  const themeToggleMob = document.getElementById('theme-toggle-mob');
+  if (themeToggleMob) themeToggleMob.addEventListener('click', toggleTheme);
+
   if (document.readyState === 'complete') {
     init();
   } else {

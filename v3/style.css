@@ -19,12 +19,82 @@
     --accent-light: rgba(37, 99, 235, 0.08);
     --border: #e5e7eb;
     --card-bg: #ffffff;
+    --card-overlay: rgba(0, 0, 0, 0.45);
     --radius: 16px;
     --radius-sm: 10px;
     --nav-h: 72px;
     --ease: cubic-bezier(0.16, 1, 0.3, 1);
     --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
     --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* Dark mode — soft dark, not pitch black */
+[data-theme="dark"] {
+    --bg: #1a1a2e;
+    --bg-alt: #222240;
+    --text: #e8e8f0;
+    --text-muted: #9a9ab0;
+    --accent: #5b8def;
+    --accent-hover: #4a7de0;
+    --accent-light: rgba(91, 141, 239, 0.12);
+    --border: #2e2e4a;
+    --card-bg: #212140;
+    --card-overlay: rgba(0, 0, 0, 0.55);
+}
+
+/* Smooth transition for all themed properties */
+body,
+.nav-desktop,
+.nav-mobile,
+.section,
+.project-card,
+.skill-item,
+.see-also-item,
+.contact-form input,
+.contact-form textarea,
+.social-link,
+.hero-badge,
+.cv-qr-badge,
+.see-also-desc {
+    transition: background-color 0.4s var(--ease-out),
+                color 0.4s var(--ease-out),
+                border-color 0.4s var(--ease-out);
+}
+
+/* Dark mode — nav bar uses lighter bg instead of --text */
+[data-theme="dark"] .nav-desktop,
+[data-theme="dark"] .nav-mobile {
+    background: #2a2a48;
+}
+
+[data-theme="dark"] .nav-bubble,
+[data-theme="dark"] .nav-mob-bubble {
+    background: var(--bg);
+}
+
+/* Dark mode — buttons */
+[data-theme="dark"] .btn-primary {
+    background: var(--accent);
+}
+
+[data-theme="dark"] .btn-primary:hover {
+    background: var(--accent-hover);
+}
+
+/* Dark mode — card overlay */
+[data-theme="dark"] .card-overlay {
+    background: var(--card-overlay);
+}
+
+/* Dark mode — QR code invert for visibility */
+[data-theme="dark"] .cv-qr-badge img,
+[data-theme="dark"] .social-cv img {
+    filter: invert(1);
+}
+
+/* Dark mode — cursor */
+[data-theme="dark"] .cursor {
+    background: var(--accent);
 }
 
 html,
@@ -56,6 +126,88 @@ a {
 img {
     display: block;
     max-width: 100%;
+}
+
+/* ============================================
+   THEME TOGGLE — positioned next to nav
+   ============================================ */
+.theme-toggle {
+    position: fixed;
+    top: 28px;
+    right: 32px;
+    z-index: 1001;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: none;
+    outline: none;
+}
+
+.toggle-track {
+    position: relative;
+    width: 52px;
+    height: 28px;
+    background: var(--bg-alt);
+    border: 1.5px solid var(--border);
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6px;
+    transition: background 0.4s var(--ease-out),
+                border-color 0.4s var(--ease-out);
+}
+
+.toggle-track:hover {
+    border-color: var(--accent);
+}
+
+.toggle-icon {
+    position: relative;
+    z-index: 1;
+    transition: opacity 0.3s var(--ease-out),
+                color 0.3s var(--ease-out);
+}
+
+.toggle-sun {
+    color: #f59e0b;
+    opacity: 1;
+}
+
+.toggle-moon {
+    color: var(--text-muted);
+    opacity: 0.4;
+}
+
+[data-theme="dark"] .toggle-sun {
+    opacity: 0.4;
+    color: var(--text-muted);
+}
+
+[data-theme="dark"] .toggle-moon {
+    opacity: 1;
+    color: #a5b4fc;
+}
+
+.toggle-thumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    background: var(--card-bg);
+    border-radius: 50%;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+    transition: transform 0.4s var(--ease),
+                background 0.4s var(--ease-out);
+}
+
+[data-theme="dark"] .toggle-thumb {
+    transform: translateX(24px);
+}
+
+[data-theme="dark"] .toggle-track {
+    background: var(--bg-alt);
 }
 
 /* ============================================
@@ -198,9 +350,10 @@ img {
     display: none;
     position: fixed;
     bottom: 16px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: auto;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: fit-content;
     height: 58px;
     z-index: 1000;
     background: var(--text);
@@ -243,6 +396,55 @@ img {
 
 .nav-mob-item.active {
     color: var(--accent);
+}
+
+/* Separator + theme button inside mobile nav */
+.nav-mob-sep {
+    width: 1px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.15);
+    margin: 0 4px;
+    flex-shrink: 0;
+    display: none;
+}
+
+.nav-mob-theme {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: none;
+    background: none;
+    color: rgba(255, 255, 255, 0.4);
+    cursor: auto;
+    margin: 0 3px;
+    padding: 0;
+    flex-shrink: 0;
+    transition: color 0.3s var(--ease-out);
+}
+
+.nav-mob-theme:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Show sun, hide moon in light mode */
+.nav-mob-theme .mob-sun {
+    display: block;
+    color: #f59e0b;
+}
+.nav-mob-theme .mob-moon {
+    display: none;
+}
+
+/* Dark mode: show moon, hide sun */
+[data-theme="dark"] .nav-mob-theme .mob-sun {
+    display: none;
+}
+[data-theme="dark"] .nav-mob-theme .mob-moon {
+    display: block;
+    color: #a5b4fc;
 }
 
 /* ============================================
@@ -924,9 +1126,18 @@ a.project-card {
    RESPONSIVE — Tablet
    ============================================ */
 @media (max-width: 1024px) {
+    .section {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
     .section-inner {
         padding: 0 36px;
         padding-top: calc(var(--nav-h) + 16px);
+        padding-bottom: 40px;
+        margin: auto 0;
     }
 
     .social-sidebar {
@@ -973,11 +1184,45 @@ a.project-card {
         display: none;
     }
 
+    /* Hide standalone toggle on mobile — integrated in nav */
+    .theme-toggle {
+        display: none;
+    }
+
     .nav-desktop {
         display: none;
     }
 
+    /* Mobile nav — centered, with theme toggle inside */
     .nav-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 64px;
+        padding: 0 8px;
+    }
+
+    .nav-mob-item {
+        width: 50px;
+        height: 50px;
+        margin: 0 2px;
+    }
+
+    .nav-mob-bubble {
+        width: 50px;
+        height: 50px;
+    }
+
+    .nav-mob-item svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .nav-mob-sep {
+        display: block;
+    }
+
+    .nav-mob-theme {
         display: flex;
     }
 
@@ -985,32 +1230,41 @@ a.project-card {
         --nav-h: 0px;
     }
 
+    /* Sections — scrollable, top-aligned so tall content isn't clipped */
     .section {
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
+        align-items: center;
+        justify-content: flex-start;
     }
 
     .section-inner {
-        padding: 32px 20px 80px;
-        padding-top: 32px;
+        padding: 28px 20px 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: auto 0;
     }
 
+    /* Hero — social row */
     .social-sidebar {
         position: relative;
         top: auto;
         left: auto;
         transform: none;
         flex-direction: row;
-        margin-bottom: 24px;
+        margin-bottom: 20px;
     }
 
     .social-line {
-        width: 50px;
+        width: 40px;
         height: 1px;
     }
 
     .hero-center {
         padding-left: 0;
+        align-items: flex-start;
+        text-align: left;
     }
 
     .hero-title {
@@ -1018,21 +1272,50 @@ a.project-card {
     }
 
     .hero-subtitle {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
+        line-height: 1.6;
     }
 
-    .hero-cta {
-        flex-direction: column;
+    /* Badge + QR */
+    .hero-badge-row {
+        flex-wrap: wrap;
         gap: 10px;
+        justify-content: flex-start;
+    }
+
+    .hero-badge {
+        font-size: 0.75rem;
+        padding: 6px 14px;
+    }
+
+    .cv-qr-badge img {
+        width: 56px;
+        height: 56px;
+    }
+
+    .cv-qr-badge {
+        padding: 5px;
+    }
+
+    /* CTA buttons — NOT full width */
+    .hero-cta {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: flex-start;
     }
 
     .hero-cta .btn {
-        width: 100%;
-        justify-content: center;
+        width: auto;
+        padding: 11px 22px;
+        font-size: 0.82rem;
     }
 
+    /* Projects */
     .projects-grid {
         grid-template-columns: 1fr;
+        gap: 16px;
+        width: 100%;
     }
 
     .project-card:last-child:nth-child(odd) {
@@ -1040,13 +1323,64 @@ a.project-card {
         max-width: 100%;
     }
 
+    .section-header {
+        margin-bottom: 24px;
+        text-align: center;
+    }
+
+    .section-title {
+        font-size: clamp(1.6rem, 6vw, 2.2rem);
+    }
+
+    /* See also — stack vertically, centered */
+    .projects-see-also {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .see-also-links {
+        flex-direction: column;
+        width: 100%;
+        gap: 8px;
+    }
+
+    .see-also-item {
+        flex: none;
+        width: 100%;
+    }
+
+    /* About */
     .about-grid {
         grid-template-columns: 1fr;
-        gap: 28px;
+        gap: 24px;
+        width: 100%;
+        text-align: left;
     }
 
     .skills-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+
+    .skill-item {
+        padding: 10px 10px;
+        gap: 6px;
+    }
+
+    .skill-item img {
+        width: 22px;
+        height: 22px;
+    }
+
+    .skill-item span {
+        font-size: 0.72rem;
+    }
+
+    /* Contact */
+    .contact-form {
+        width: 100%;
+        text-align: left;
     }
 
     .form-row {
@@ -1057,6 +1391,7 @@ a.project-card {
         flex-direction: column;
         gap: 12px;
         text-align: center;
+        width: 100%;
     }
 
     .btn {
@@ -1071,6 +1406,15 @@ a.project-card {
 
 @media (max-width: 380px) {
     .skills-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-cta {
+        flex-direction: column;
+    }
+
+    .hero-cta .btn {
+        width: 100%;
+        justify-content: center;
     }
 }
