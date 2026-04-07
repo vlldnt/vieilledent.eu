@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  web:
+    # Build depuis le Dockerfile
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: vieilledent-web
+
+    # Port HTTP (reverse proxy du VPS se connecte ici)
+    ports:
+      - "80:80"
+
+    # Redémarrer automatiquement si crash
+    restart: unless-stopped
+
+    # Logs avec rotation
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+    # Limites ressources pour la production
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
