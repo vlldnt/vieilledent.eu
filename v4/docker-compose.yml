@@ -1,29 +1,45 @@
 services:
   web:
-    # Build depuis le Dockerfile
     build:
       context: .
       dockerfile: Dockerfile
     container_name: vieilledent-web
-
-    # Port HTTP local au VPS (Nginx hote proxy_pass vers ce port)
     ports:
       - "127.0.0.1:8080:80"
-
-    # Redémarrer automatiquement si crash
     restart: unless-stopped
-
-    # Logs avec rotation
+    depends_on:
+      - api
     logging:
       driver: "json-file"
       options:
         max-size: "10m"
         max-file: "3"
-
-    # Healthcheck aussi visible dans docker compose ps
     healthcheck:
       test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost/health"]
       interval: 30s
       timeout: 3s
       retries: 3
       start_period: 5s
+    networks:
+      - portfolio
+
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: vieilledent-api
+    restart: unless-stopped
+    env_file: .env
+    expose:
+      - "3000"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "2"
+    networks:
+      - portfolio
+
+networks:
+  portfolio:
+    driver: bridge

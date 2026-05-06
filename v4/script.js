@@ -7,6 +7,97 @@
 (() => {
   'use strict';
 
+  // ── Translations ──
+  const TRANSLATIONS = {
+    en: {
+      nav_home: 'Home', nav_projects: 'Projects', nav_about: 'About', nav_contact: 'Contact',
+      badge_available: 'Available for opportunities',
+      hero_subtitle: 'Building elegant &amp; functional digital experiences.<br>Junior developer, constantly learning and growing.',
+      btn_view_projects: 'View Projects', btn_download_cv: 'Download CV', btn_get_in_touch: 'Get in Touch',
+      projects_desc: "A selection of personal projects I've built.",
+      card_iakoa_ios_title: 'IAKOA — iOS App',
+      card_iakoa_ios_desc: 'Discover local events with geolocation and community features.',
+      card_iakoa_fs_title: 'IAKOA — Full Stack',
+      card_iakoa_fs_desc: 'Backend API and web interface for the IAKOA event platform.',
+      card_synapses_title: 'Synapses — ESMS',
+      card_synapses_desc: 'Social-impact project developing an AI-assisted web app for social and medico-social sector professionals.',
+      card_gpxtooth_desc: 'Personal website to track my .gpx bike and running sessions.',
+      view_project: 'View Project', see_also: 'See also',
+      desc_shell: 'Shell replica in C', desc_hbnb: 'Airbnb clone — Flask', desc_xptracker: 'WoW addon in Lua',
+      about_desc: 'A little more about who I am and what I do.',
+      about_heading: 'Get to know me',
+      about_p1: "I'm a junior web developer focused on creating clean, functional, and user-friendly interfaces. Passionate about the intersection of design and code.",
+      about_p2: "I enjoy sharing what I learn along the way, hoping it helps others starting their journey in tech.",
+      about_p3: "Open to internship or junior-level opportunities where I can contribute to real projects and grow as a developer.",
+      skills_heading: 'Skills & Tools',
+      contact_desc: "Have a project in mind? Let's talk.",
+      label_name: 'Name', placeholder_name: 'Your name',
+      label_email: 'Email', placeholder_email: 'your@email.com',
+      label_message: 'Message', placeholder_message: 'Tell me about your project...',
+      btn_send: 'Send Message',
+      form_sending: 'Sending…',
+      form_success: 'Message sent! I\'ll get back to you soon.',
+      form_error: 'Something went wrong. Please try again.',
+      form_ratelimit: 'Please wait 5 minutes before sending again.',
+    },
+    fr: {
+      nav_home: 'Accueil', nav_projects: 'Projets', nav_about: 'À propos', nav_contact: 'Contact',
+      badge_available: 'Disponible pour des opportunités',
+      hero_subtitle: 'Je conçois des expériences digitales élégantes &amp; fonctionnelles.<br>Développeur junior, en apprentissage constant.',
+      btn_view_projects: 'Voir les projets', btn_download_cv: 'Télécharger le CV', btn_get_in_touch: 'Me contacter',
+      projects_desc: "Une sélection de projets personnels que j'ai réalisés.",
+      card_iakoa_ios_title: 'IAKOA — App iOS',
+      card_iakoa_ios_desc: 'Découvrez des événements locaux avec géolocalisation et fonctionnalités communautaires.',
+      card_iakoa_fs_title: 'IAKOA — Full Stack',
+      card_iakoa_fs_desc: "API backend et interface web pour la plateforme d'événements IAKOA.",
+      card_synapses_title: 'Synapses — ESMS',
+      card_synapses_desc: "Projet à impact social développant une application web assistée par IA pour les professionnels du secteur social et médico-social (ESMS).",
+      card_gpxtooth_desc: 'Site personnel pour suivre mes sessions vélo et course à pied en .gpx.',
+      view_project: 'Voir le projet', see_also: 'Voir aussi',
+      desc_shell: 'Réplique de shell en C', desc_hbnb: 'Clone Airbnb — Flask', desc_xptracker: 'Addon WoW en Lua',
+      about_desc: 'Un peu plus sur qui je suis et ce que je fais.',
+      about_heading: 'Mieux me connaître',
+      about_p1: "Je suis un développeur web junior axé sur la création d'interfaces propres, fonctionnelles et conviviales. Passionné par l'intersection entre design et code.",
+      about_p2: "J'aime partager ce que j'apprends en chemin, en espérant aider ceux qui débutent leur parcours dans la tech.",
+      about_p3: "Ouvert aux opportunités de stage ou de poste junior où je peux contribuer à de vrais projets et évoluer en tant que développeur.",
+      skills_heading: 'Compétences & Outils',
+      contact_desc: 'Un projet en tête ? Parlons-en.',
+      label_name: 'Nom', placeholder_name: 'Votre nom',
+      label_email: 'Email', placeholder_email: 'votre@email.com',
+      label_message: 'Message', placeholder_message: 'Parlez-moi de votre projet...',
+      btn_send: 'Envoyer',
+      form_sending: 'Envoi…',
+      form_success: 'Message envoyé ! Je vous réponds très vite.',
+      form_error: 'Une erreur est survenue. Veuillez réessayer.',
+      form_ratelimit: 'Merci de patienter 5 minutes avant de renvoyer.',
+    },
+  };
+
+  const browserLang = navigator.language?.startsWith('fr') ? 'fr' : 'en';
+  let currentLang = localStorage.getItem('lang') || browserLang;
+
+  function setLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem('lang', lang);
+    document.documentElement.lang = lang;
+    const t = TRANSLATIONS[lang];
+    document.querySelectorAll('[data-i18n]').forEach((el) => {
+      const key = el.dataset.i18n;
+      if (t[key] !== undefined) el.textContent = t[key];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach((el) => {
+      const key = el.dataset.i18nHtml;
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
+      const key = el.dataset.i18nPlaceholder;
+      if (t[key] !== undefined) el.placeholder = t[key];
+    });
+    document.querySelectorAll('.lang-btn').forEach((btn) => {
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+  }
+
   // ── State ──
   let currentIndex = 0;
   let isAnimating = false;
@@ -442,10 +533,75 @@
 
     // Hero content entrance (single pass, no flash)
     initHeroAnimation();
+
+    // Apply saved language
+    setLanguage(currentLang);
   }
 
   // Reposition bubble on resize
   window.addEventListener('resize', () => moveBubble(currentIndex, false));
+
+  /* ============================================
+       CONTACT FORM
+       ============================================ */
+  const contactForm = document.getElementById('contact-form');
+  // Record when the form section becomes visible (timing anti-bot)
+  let formReadyAt = null;
+  const formObserver = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting && !formReadyAt) formReadyAt = Date.now();
+  });
+  if (contactForm) formObserver.observe(contactForm);
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const t = TRANSLATIONS[currentLang];
+      const submitBtn = contactForm.querySelector('.btn-submit');
+      const submitSpan = submitBtn.querySelector('span');
+      const data = Object.fromEntries(new FormData(contactForm));
+      data._t = formReadyAt || 0;
+
+      submitBtn.disabled = true;
+      submitSpan.textContent = t.form_sending;
+
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+
+        if (res.ok) {
+          contactForm.reset();
+          submitSpan.textContent = t.form_success;
+          submitBtn.style.background = '#16a34a';
+          setTimeout(() => {
+            submitSpan.textContent = t.btn_send;
+            submitBtn.style.background = '';
+            submitBtn.disabled = false;
+          }, 4000);
+        } else if (res.status === 429) {
+          submitSpan.textContent = t.form_ratelimit;
+          submitBtn.style.background = '#d97706';
+          setTimeout(() => {
+            submitSpan.textContent = t.btn_send;
+            submitBtn.style.background = '';
+            submitBtn.disabled = false;
+          }, 5000);
+        } else {
+          throw new Error('non-ok');
+        }
+      } catch {
+        submitSpan.textContent = t.form_error;
+        submitBtn.style.background = '#dc2626';
+        setTimeout(() => {
+          submitSpan.textContent = t.btn_send;
+          submitBtn.style.background = '';
+          submitBtn.disabled = false;
+        }, 4000);
+      }
+    });
+  }
 
   /* ============================================
        THEME TOGGLE — light/dark mode
@@ -460,6 +616,11 @@
     }
     localStorage.setItem('theme', isDark ? 'light' : 'dark');
   }
+
+  // Language buttons
+  document.querySelectorAll('.lang-btn').forEach((btn) => {
+    btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+  });
 
   // Restore saved preference
   const saved = localStorage.getItem('theme');
