@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Read(//root/.ssh/**)"
+      "Read(//root/.ssh/**)",
+      "Bash(ssh -o ConnectTimeout=10 -o BatchMode=yes vps \"echo connected\")"
     ]
   }
 }

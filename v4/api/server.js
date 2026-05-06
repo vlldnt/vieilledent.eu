@@ -3,7 +3,7 @@ const { createServer } = require('http');
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const TO_EMAIL = process.env.TO_EMAIL || 'vieilledent.adrien@gmail.com';
-const FROM_EMAIL = process.env.FROM_EMAIL || 'contact@vieilledent.eu';
+const FROM_EMAIL = process.env.FROM_EMAIL || 'contact@iakoa.fr';
 const PORT = 3000;
 const RATE_LIMIT_MS = 5 * 60 * 1000; // 5 minutes
 const MIN_FORM_TIME_MS = 3000;        // form must be open at least 3s
