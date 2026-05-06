@@ -1,0 +1,42 @@
+# Fichiers Git
+.git
+.gitignore
+.gitattributes
+
+# Logs et caches
+*.log
+.DS_Store
+.cache
+node_modules/
+
+# Environnement
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Documentation
+README.md
+DEPLOYMENT.md
+*.md
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.circleci/
+
+# Divers
+*.zip
+*.tar.gz
+coverage/
