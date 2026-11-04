@@ -17,10 +17,10 @@
       hero_subtitle: 'Full-stack developer — I build web and mobile apps end to end, from the database to the interface.',
       btn_view_projects: 'View Projects', btn_download_cv: 'Download CV', btn_get_in_touch: 'Get in Touch',
       projects_desc: "A selection of personal projects I've built.",
-      card_synapses_desc: 'AI-assisted professional writing for the social and medico-social sector. Personal data is anonymized before anything reaches the AI.',
-      card_eurocoins_desc: 'Interactive map of Europe to explore the national sides of euro coins from 25 countries, with a personal collection tracker. ECB data, 22 languages.',
-      card_oak_desc: 'Interactive tracker for the Professor Oak Challenge: one checklist per game version, evolutions unlocking in order, progress saved in the browser.',
-      card_gpxtooth_desc: 'GPS dashboard: import GPX files and explore routes, altitude, speed and heart rate on OSM, Topo and Satellite maps.',
+      card_synapses_desc: 'AI-assisted professional writing for the social and medico-social sector: reports, care plans and meeting minutes generated from a few key inputs. Personal data is anonymized before anything reaches the AI (GDPR), multi-organization with strict data isolation, voice dictation, Word/PDF export.',
+      card_eurocoins_desc: 'Interactive map of Europe to explore the national sides of euro coins from all 25 issuing countries: regular series, €2 commemoratives and a personal collection tracker with Excel/CSV export. ECB data refreshed weekly, 22 languages, photo-based coin recognition, installable PWA.',
+      card_oak_desc: 'Interactive tracker for the Professor Oak Challenge: complete as much of the Pokédex as possible before each badge. One checklist per game version, evolutions unlocking in order, progress per part and per version. French and English, light/dark theme, no sign-up.',
+      card_gpxtooth_desc: 'GPS dashboard to import GPX files and explore your routes, altitude, speed, climb gradients and heart rate through interactive charts on OSM, Topo and Satellite maps. Everything stays in the browser, nothing is uploaded.',
       view_project: 'View Project', see_also: 'See also',
       desc_iakoa: 'Local event discovery platform: find, create and manage events in your city — NestJS, TypeScript, PostgreSQL, Prisma.',
       desc_planea: 'Weekly staff scheduling for aquatic centers: pools, qualifications, availability, PDF export — Rust / Axum, React 19, PostgreSQL.',
@@ -51,10 +51,10 @@
       hero_subtitle: 'Développeur full-stack — je conçois des applications web et mobiles de A à Z, de la base de données à l\'interface.',
       btn_view_projects: 'Voir les projets', btn_download_cv: 'Télécharger le CV', btn_get_in_touch: 'Me contacter',
       projects_desc: "Une sélection de projets personnels que j'ai réalisés.",
-      card_synapses_desc: "Rédaction professionnelle assistée par IA pour le secteur social et médico-social. Les données personnelles sont anonymisées avant tout envoi à l'IA.",
-      card_eurocoins_desc: "Carte d'Europe interactive des faces nationales des pièces en euros de 25 pays, avec suivi de collection personnelle. Données BCE, 22 langues.",
-      card_oak_desc: "Tracker interactif du Professor Oak Challenge : une checklist par version du jeu, évolutions débloquées dans l'ordre, progression sauvegardée dans le navigateur.",
-      card_gpxtooth_desc: 'Tableau de bord GPS : importez vos fichiers GPX et explorez parcours, altitude, vitesse et fréquence cardiaque sur cartes OSM, Topo et Satellite.',
+      card_synapses_desc: "Rédaction professionnelle assistée par IA pour le secteur social et médico-social : comptes rendus, projets personnalisés et bilans générés à partir de quelques éléments clés. Les données personnelles sont anonymisées avant tout envoi à l'IA (RGPD), multi-organisation avec isolation stricte des données, dictée vocale, export Word/PDF.",
+      card_eurocoins_desc: "Carte d'Europe interactive pour explorer les faces nationales des pièces en euros des 25 pays émetteurs : séries courantes, 2 € commémoratives et suivi de collection personnelle avec export Excel/CSV. Données BCE rafraîchies chaque semaine, 22 langues, reconnaissance de pièce par photo, PWA installable.",
+      card_oak_desc: "Tracker interactif du Professor Oak Challenge : compléter un maximum du Pokédex avant chaque badge. Une checklist par version du jeu, évolutions débloquées dans l'ordre, progression par partie et par version. Français et anglais, thème clair/sombre, sans inscription.",
+      card_gpxtooth_desc: 'Tableau de bord GPS pour importer vos fichiers GPX et explorer parcours, altitude, vitesse, pente des côtes et fréquence cardiaque dans des graphiques interactifs sur cartes OSM, Topo et Satellite. Tout reste dans le navigateur, rien n\'est envoyé.',
       view_project: 'Voir le projet', see_also: 'Voir aussi',
       desc_iakoa: "Plateforme de découverte d'événements locaux : trouver, créer et gérer des événements dans sa ville — NestJS, TypeScript, PostgreSQL, Prisma.",
       desc_planea: 'Planning hebdomadaire du personnel pour centres aquatiques : bassins, qualifications, disponibilités, export PDF — Rust / Axum, React 19, PostgreSQL.',
@@ -259,10 +259,11 @@
     // Prepare target: content hidden, section off-screen, scrolled to top
     targetSection.scrollTop = 0;
     revealed.add(targetSection);
+    aosReset(targetSection);
     const targetItems = targetSection.querySelectorAll('.anim-item');
     gsap.set(targetItems, { opacity: 0, y: 25 });
     gsap.set(targetSection, {
-      xPercent: direction * SLIDE_DISTANCE,
+      yPercent: direction * SLIDE_DISTANCE,
       opacity: 0,
       visibility: 'visible',
       zIndex: 2,
@@ -275,7 +276,7 @@
       onComplete: () => {
         currentSection.classList.remove('active');
         gsap.set(currentSection, {
-          xPercent: 0,
+          yPercent: 0,
           opacity: 0,
           visibility: 'hidden',
           zIndex: 0,
@@ -289,13 +290,15 @@
 
         // Content entrance (only animation pass)
         animateSectionContent(targetSection);
+        aosPlay(targetSection);
       },
     });
 
+    // Vertical slide: forward = next panel rises from below, current drifts up
     tl.to(
       currentSection,
       {
-        xPercent: -direction * (SLIDE_DISTANCE * 0.4),
+        yPercent: -direction * (SLIDE_DISTANCE * 0.4),
         opacity: 0,
       },
       0,
@@ -304,7 +307,7 @@
     tl.to(
       targetSection,
       {
-        xPercent: 0,
+        yPercent: 0,
         opacity: 1,
       },
       0,
@@ -591,6 +594,36 @@
        INIT
        ============================================ */
   /* ============================================
+       AOS (Animate On Scroll) — per-project card animations.
+       Mobile: AOS drives itself from the page scroll.
+       Slide mode: nothing scrolls, so the classes are toggled by hand
+       when a panel is shown (AOS CSS does the easing/delay/stagger).
+       ============================================ */
+  const hasAOS = typeof AOS !== 'undefined';
+
+  function aosReset(scope) {
+    if (!hasAOS) return;
+    scope.querySelectorAll('[data-aos]').forEach((el) => el.classList.remove('aos-animate'));
+  }
+
+  function aosPlay(scope) {
+    if (!hasAOS) return;
+    // next frame so the reset has painted and the transition replays
+    requestAnimationFrame(() => {
+      scope.querySelectorAll('[data-aos]').forEach((el) => el.classList.add('aos-animate'));
+    });
+  }
+
+  if (hasAOS) {
+    AOS.init({
+      duration: 650,
+      easing: 'ease-out-cubic',
+      offset: 40,
+      once: true,
+    });
+  }
+
+  /* ============================================
        LAYOUT MODE
        ============================================ */
   let revealObserver = null;
@@ -672,6 +705,7 @@
         }
       });
       setupMobileObservers();
+      if (hasAOS && !initial) AOS.refreshHard();
       // Land on the section that was active in slide mode
       if (!initial && currentIndex > 0) {
         sections[currentIndex].scrollIntoView({ block: 'start' });
@@ -685,13 +719,14 @@
         gsap.set(section, {
           opacity: active ? 1 : 0,
           visibility: active ? 'visible' : 'hidden',
-          xPercent: 0,
+          yPercent: 0,
           zIndex: active ? 1 : 0,
         });
       });
       if (!initial) {
         revealed.add(sections[currentIndex]);
         gsap.set(sections[currentIndex].querySelectorAll('.anim-item'), { opacity: 1, y: 0 });
+        aosPlay(sections[currentIndex]);
       }
     }
 
