@@ -259,7 +259,6 @@
     // Prepare target: content hidden, section off-screen, scrolled to top
     targetSection.scrollTop = 0;
     revealed.add(targetSection);
-    aosReset(targetSection);
     const targetItems = targetSection.querySelectorAll('.anim-item');
     gsap.set(targetItems, { opacity: 0, y: 25 });
     gsap.set(targetSection, {
@@ -290,7 +289,6 @@
 
         // Content entrance (only animation pass)
         animateSectionContent(targetSection);
-        aosPlay(targetSection);
       },
     });
 
@@ -594,36 +592,6 @@
        INIT
        ============================================ */
   /* ============================================
-       AOS (Animate On Scroll) — per-project card animations.
-       Mobile: AOS drives itself from the page scroll.
-       Slide mode: nothing scrolls, so the classes are toggled by hand
-       when a panel is shown (AOS CSS does the easing/delay/stagger).
-       ============================================ */
-  const hasAOS = typeof AOS !== 'undefined';
-
-  function aosReset(scope) {
-    if (!hasAOS) return;
-    scope.querySelectorAll('[data-aos]').forEach((el) => el.classList.remove('aos-animate'));
-  }
-
-  function aosPlay(scope) {
-    if (!hasAOS) return;
-    // next frame so the reset has painted and the transition replays
-    requestAnimationFrame(() => {
-      scope.querySelectorAll('[data-aos]').forEach((el) => el.classList.add('aos-animate'));
-    });
-  }
-
-  if (hasAOS) {
-    AOS.init({
-      duration: 650,
-      easing: 'ease-out-cubic',
-      offset: 40,
-      once: true,
-    });
-  }
-
-  /* ============================================
        LAYOUT MODE
        ============================================ */
   let revealObserver = null;
@@ -705,7 +673,6 @@
         }
       });
       setupMobileObservers();
-      if (hasAOS && !initial) AOS.refreshHard();
       // Land on the section that was active in slide mode
       if (!initial && currentIndex > 0) {
         sections[currentIndex].scrollIntoView({ block: 'start' });
@@ -726,7 +693,6 @@
       if (!initial) {
         revealed.add(sections[currentIndex]);
         gsap.set(sections[currentIndex].querySelectorAll('.anim-item'), { opacity: 1, y: 0 });
-        aosPlay(sections[currentIndex]);
       }
     }
 

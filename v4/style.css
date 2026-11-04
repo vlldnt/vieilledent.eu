@@ -645,12 +645,6 @@ img {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    [data-aos] {
-        opacity: 1 !important;
-        transform: none !important;
-        transition: none !important;
-    }
-
     .scroll-hint-arrows svg {
         animation: none;
         opacity: 0.8;
