@@ -97,11 +97,17 @@ body,
     background: var(--accent);
 }
 
+/* Black single-colour logos (Apple, Rust, Flask, Next.js) flip to white in dark mode */
+[data-theme="dark"] .logo-mono {
+    filter: invert(1);
+}
+
 html,
 body {
     height: 100%;
     overflow: hidden;
-    /* ← NO SCROLL */
+    /* ← NO SCROLL (slide mode); mobile overrides this below */
+    overscroll-behavior: none;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     background: var(--bg);
     color: var(--text);
@@ -402,7 +408,7 @@ img {
 .nav-mobile {
     display: none;
     position: fixed;
-    bottom: 16px;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
     left: 0;
     right: 0;
     margin: 0 auto;
@@ -524,6 +530,11 @@ img {
     visibility: hidden;
     pointer-events: none;
     will-change: transform, opacity;
+    /* Tall content (small laptop screens) stays reachable */
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
 }
 
 .section.active {
@@ -545,6 +556,103 @@ img {
     max-width: 1100px;
     padding: 0 60px;
     padding-top: calc(var(--nav-h) + 20px);
+    padding-bottom: 32px;
+    /* auto margins: centered when short, top-aligned (scrollable) when tall */
+    margin: auto;
+}
+
+/* ============================================
+   SCROLL HINT — discreet animated chevrons (slide mode only)
+   ============================================ */
+.scroll-hint {
+    position: fixed;
+    left: 50%;
+    bottom: 26px;
+    transform: translateX(-50%);
+    z-index: 900;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 6px 10px;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: none;
+    opacity: 0.55;
+    transition: opacity 0.4s var(--ease-out), color 0.3s ease;
+}
+
+.scroll-hint:hover {
+    opacity: 1;
+    color: var(--accent);
+}
+
+.scroll-hint.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.scroll-hint-label {
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.scroll-hint-arrows {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 26px;
+    transition: transform 0.4s var(--ease);
+}
+
+.scroll-hint-arrows svg {
+    position: absolute;
+    top: 0;
+    animation: hint-chevron 1.8s var(--ease-out) infinite;
+}
+
+.scroll-hint-arrows svg:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+/* Last section: chevrons point up */
+.scroll-hint.up .scroll-hint-arrows {
+    transform: rotate(180deg);
+}
+
+.scroll-hint.up {
+    flex-direction: column-reverse;
+}
+
+@keyframes hint-chevron {
+    0% {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    35% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .scroll-hint-arrows svg {
+        animation: none;
+        opacity: 0.8;
+    }
+
+    .scroll-hint-arrows svg:nth-child(2) {
+        display: none;
+    }
 }
 
 /* ============================================
@@ -958,6 +1066,21 @@ a.project-card {
     white-space: nowrap;
 }
 
+.see-also-status {
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: var(--bg-alt);
+    border-radius: 100px;
+    padding: 3px 8px;
+}
+
+.see-also-private {
+    cursor: default;
+}
+
 .see-also-item .tag-icon {
     width: 26px;
     height: 26px;
@@ -992,10 +1115,11 @@ a.project-card {
     font-weight: 400;
     color: var(--text-muted);
     line-height: 1.45;
-    white-space: nowrap;
+    min-width: 240px;
     opacity: 0;
     transform: translateY(-4px);
     pointer-events: none;
+    z-index: 2;
     transition: opacity 0.3s var(--ease-out),
         transform 0.3s var(--ease-out);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
@@ -1038,39 +1162,59 @@ a.project-card {
     font-size: 0.92rem;
 }
 
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
+.skills-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
 }
 
-.skill-item {
+.skill-group {
+    display: grid;
+    grid-template-columns: 122px 1fr;
+    gap: 12px;
+    align-items: start;
+}
+
+.skill-group-label {
+    padding-top: 9px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.skill-chips {
     display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.skill-chip {
+    display: inline-flex;
     align-items: center;
-    gap: 10px;
-    padding: 12px 14px;
+    gap: 7px;
+    padding: 7px 13px 7px 9px;
     background: var(--card-bg);
     border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 500;
     transition: transform 0.3s var(--ease),
         box-shadow 0.3s var(--ease),
         border-color 0.3s ease;
 }
 
-.skill-item:hover {
-    transform: translateY(-3px);
+.skill-chip:hover {
+    transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
     border-color: var(--accent);
 }
 
-.skill-item img {
-    width: 26px;
-    height: 26px;
-}
-
-.skill-item span {
-    font-size: 0.82rem;
-    font-weight: 500;
+.skill-chip img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
 }
 
 /* ============================================
@@ -1180,18 +1324,10 @@ a.project-card {
    RESPONSIVE — Tablet
    ============================================ */
 @media (max-width: 1024px) {
-    .section {
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-        align-items: center;
-        justify-content: flex-start;
-    }
-
     .section-inner {
         padding: 0 36px;
         padding-top: calc(var(--nav-h) + 16px);
         padding-bottom: 40px;
-        margin: auto 0;
     }
 
     .social-sidebar {
@@ -1216,8 +1352,13 @@ a.project-card {
         gap: 32px;
     }
 
-    .skills-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .skill-group {
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+
+    .skill-group-label {
+        padding-top: 0;
     }
 
     .nav-item {
@@ -1239,7 +1380,8 @@ a.project-card {
     }
 
     /* Hide standalone toggle on mobile — integrated in nav */
-    .theme-toggle {
+    .theme-toggle,
+    .scroll-hint {
         display: none;
     }
 
@@ -1289,20 +1431,57 @@ a.project-card {
         --nav-h: 0px;
     }
 
-    /* Sections — scrollable, top-aligned so tall content isn't clipped */
-    .section {
+    /* ---- Stacked layout: native page scroll, bottom nav = scroll-spy ---- */
+    html,
+    body {
+        height: auto;
+        overflow-x: hidden;
         overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-x: none;
+        overscroll-behavior-y: auto;
+    }
+
+    .sections-viewport {
+        height: auto;
+        overflow: visible;
+    }
+
+    .section {
+        position: relative;
+        height: auto;
+        display: block;
+        overflow: visible;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: none;
+        will-change: auto;
+    }
+
+    /* Hero fills the first screen, content vertically centered */
+    #section-hero {
+        display: flex;
         align-items: center;
-        justify-content: flex-start;
+        min-height: 100vh;
+        min-height: 100svh;
     }
 
     .section-inner {
-        padding: 28px 20px 100px;
+        padding: 64px 20px 40px;
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin: 0;
+    }
+
+    #section-hero .section-inner {
+        padding: 72px 20px 56px;
         margin: auto 0;
+    }
+
+    /* Keep the footer clear of the fixed bottom nav */
+    #section-contact .section-inner {
+        padding-bottom: calc(120px + env(safe-area-inset-bottom, 0px));
     }
 
     /* Hero — social row */
@@ -1417,23 +1596,37 @@ a.project-card {
         text-align: left;
     }
 
-    .skills-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
-    }
-
-    .skill-item {
-        padding: 10px 10px;
+    .skill-group {
+        grid-template-columns: 1fr;
         gap: 6px;
     }
 
-    .skill-item img {
-        width: 22px;
-        height: 22px;
+    .skill-group-label {
+        padding-top: 0;
     }
 
-    .skill-item span {
-        font-size: 0.72rem;
+    .skill-chip {
+        font-size: 0.76rem;
+        padding: 6px 11px 6px 8px;
+    }
+
+    /* See-also tooltips don't work on touch: show the description inline */
+    .see-also-item {
+        gap: 4px;
+    }
+
+    .see-also-desc {
+        position: static;
+        margin-top: 2px;
+        padding: 0;
+        border: none;
+        background: none;
+        box-shadow: none;
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+        white-space: normal;
+        min-width: 0;
     }
 
     /* Contact */
@@ -1464,10 +1657,6 @@ a.project-card {
 }
 
 @media (max-width: 380px) {
-    .skills-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
     .hero-cta {
         flex-direction: column;
     }
