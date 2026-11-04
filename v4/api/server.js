@@ -28,12 +28,23 @@ setInterval(() => {
 }, 10 * 60 * 1000);
 
 function getIP(req) {
-  return (
-    req.headers['x-forwarded-for']?.split(',')[0].trim() ||
-    req.socket.remoteAddress ||
-    'unknown'
-  );
+  // X-Real-IP is set by the host nginx from the actual TCP peer and cannot be
+  // forged by the client. X-Forwarded-For is appended to by every proxy, so
+  // its first entry is client-controlled; only use it as a last resort.
+  const real = req.headers['x-real-ip']?.trim();
+  if (real) return real;
+  const xff = req.headers['x-forwarded-for'];
+  if (xff) {
+    const hops = xff.split(',').map((h) => h.trim()).filter(Boolean);
+    // last entry = added by the container nginx (= host proxy address),
+    // the one before it = address seen by the host proxy (= real client)
+    if (hops.length >= 2) return hops[hops.length - 2];
+  }
+  return req.socket.remoteAddress || 'unknown';
 }
+
+// Pragmatic email check: one @, no spaces, a dot in the domain part
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 function readBody(req) {
   return new Promise((resolve, reject) => {
@@ -56,12 +67,8 @@ function sanitize(str) {
 
 const server = createServer(async (req, res) => {
   res.setHeader('Content-Type', 'application/json');
-  res.setHeader('Access-Control-Allow-Origin', '*');
-
-  if (req.method === 'OPTIONS') {
-    res.writeHead(204);
-    return res.end();
-  }
+  // No CORS headers on purpose: the form is served from the same origin
+  // (/api/ behind nginx), so browsers block posts from other sites.
 
   if (req.method === 'POST' && req.url === '/api/contact') {
     const ip = getIP(req);
@@ -104,6 +111,10 @@ const server = createServer(async (req, res) => {
         res.writeHead(400);
         return res.end(JSON.stringify({ error: 'Message too short' }));
       }
+      if (!EMAIL_REGEX.test(email.trim())) {
+        res.writeHead(400);
+        return res.end(JSON.stringify({ error: 'Invalid email' }));
+      }
 
       // 5. URL count — more than 2 links = likely spam
       const urlMatches = message.match(URL_REGEX) || [];
@@ -120,7 +131,8 @@ const server = createServer(async (req, res) => {
         return res.end(JSON.stringify({ ok: true })); // silently discard
       }
 
-      await resend.emails.send({
+      // The Resend SDK does not throw on API errors: it returns { error }.
+      const { error: sendError } = await resend.emails.send({
         from: FROM_EMAIL,
         to: TO_EMAIL,
         replyTo: email.trim(),
@@ -132,6 +144,7 @@ const server = createServer(async (req, res) => {
           <p>${sanitize(message)}</p>
         `,
       });
+      if (sendError) throw new Error(sendError.message || 'Resend error');
 
       rateMap.set(ip, Date.now());
       res.writeHead(200);
